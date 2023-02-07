@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    signingConfigs {
+        debug {
+            storeFile file("./../keystore/debug.keystore")
+            storePassword "welodebug123"
+            keyAlias "welo_debug"
+            keyPassword "welodebug123"
+        }
+        release {
+            storeFile file("./../keystore/debug.keystore")
+            storePassword "welodebug123"
+            keyAlias "welo_debug"
+            keyPassword "welodebug123"
+        }
+    }
+
+    compileSdk 29
+
+    defaultConfig {
+        applicationId "cc.ivtx.tutorials1v1vcall"
+        minSdk 23
+        targetSdk 29
+        versionCode 2
+        versionName "1.1"
+
+        ndk {
+            abiFilters 'arm64-v8a'
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar", '*.aar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9" // 协程
+
+    //https://github.com/gyf-dev/ImmersionBar
+    // 基础依赖包，必须要依赖
+    implementation 'com.geyifeng.immersionbar:immersionbar:3.2.2'
+    // kotlin扩展（可选）
+    implementation 'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2'
+
+    //aliyun player
+    implementation 'com.aliyun.sdk.android:AliyunPlayer:5.4.9.2-full'
+
+}
