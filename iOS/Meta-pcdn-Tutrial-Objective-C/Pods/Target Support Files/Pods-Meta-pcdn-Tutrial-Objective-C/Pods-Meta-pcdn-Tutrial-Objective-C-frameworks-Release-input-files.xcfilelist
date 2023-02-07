@@ -1,0 +1,5 @@
+${PODS_ROOT}/Target Support Files/Pods-Meta-pcdn-Tutrial-Objective-C/Pods-Meta-pcdn-Tutrial-Objective-C-frameworks.sh
+${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
+${BUILT_PRODUCTS_DIR}/LMJDropdownMenu/LMJDropdownMenu.framework
+${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework
+${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework

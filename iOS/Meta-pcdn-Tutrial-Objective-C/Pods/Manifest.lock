@@ -1,0 +1,28 @@
+PODS:
+  - IQKeyboardManager (6.5.10)
+  - LMJDropdownMenu (3.0.4)
+  - Masonry (1.1.0)
+  - SVProgressHUD (2.2.5)
+
+DEPENDENCIES:
+  - IQKeyboardManager
+  - LMJDropdownMenu
+  - Masonry
+  - SVProgressHUD
+
+SPEC REPOS:
+  trunk:
+    - IQKeyboardManager
+    - LMJDropdownMenu
+    - Masonry
+    - SVProgressHUD
+
+SPEC CHECKSUMS:
+  IQKeyboardManager: 45a1fa55c1a5b02c61ac0fd7fd5b62bb4ad20d97
+  LMJDropdownMenu: 50c74e9d50a480c290fec47eb575826861d0823b
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+
+PODFILE CHECKSUM: 98618259c1ed409f9d9b97396d7ed9fa2eb3384e
+
+COCOAPODS: 1.11.3
