@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="co.meta.pcdnexample">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".BaseApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/icon_meta_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/icon_meta_logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".VideoPlayerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreenVideoTheme"
+            android:launchMode="singleTop"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+
+        <meta-data
+            android:name="com.aliyun.alivc_license.licensekey"
+            android:value="noC0jyhZ9igoJFXDf7e0205bb5b5f44d48feb989ac86dbd77" />
+
+        <meta-data
+            android:name="com.aliyun.alivc_license.licensefile"
+            android:value="assets/alilicense/AliVideoCert.crt" />
+
+    </application>
+
+</manifest>
