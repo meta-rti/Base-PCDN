@@ -8,8 +8,8 @@
 #ifndef Key_h
 #define Key_h
 
-#define  CID @"00000000000000000000000000000001"
-#define  VID @""
-#define  Token @""
+#define  CID <# Your CID#>
+#define  VID <# Your VID #>
+#define  Token <# Your Token#>
 
 #endif /* Key_h */
