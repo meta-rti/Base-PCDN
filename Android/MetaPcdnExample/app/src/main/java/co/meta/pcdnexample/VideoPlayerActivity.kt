@@ -125,6 +125,7 @@ class VideoPlayerActivity : AppCompatActivity() {
 
         var metaPcdnClientConfig= MetaPcdnClientConfig()
         metaPcdnClientConfig.mContext = BaseApplication.INSTANCE
+        metaPcdnClientConfig.mCId = "00000000000000000000000000000001"
         MetaPcdnClient.getInstance().create(metaPcdnClientConfig)
         initPcdnLog()
         mAliyunPlayerBinding.tvVersion.text = "version: ${MetaPcdnClient.getInstance().sdkVersion}"
@@ -255,6 +256,7 @@ class VideoPlayerActivity : AppCompatActivity() {
 
     //播放器配置
     private fun initPlayerConfig(){
+        mAliyunPlayerBinding.aliPlayer.setTraceID("RTC")
         mAliyunPlayerBinding.aliPlayer.setOnVideoRenderedListener { pts, timestamp ->
             //Log.w(TAG, " PCDN setOnVideoRenderedListener: pts = $pts , timestamp = $timestamp")
             player1SampleCounter.addSample(timestamp / 1000, "PCDN")
@@ -296,6 +298,7 @@ class VideoPlayerActivity : AppCompatActivity() {
         }
 
 
+        mAliyunPlayerBinding.aliPlayer2.setTraceID("CDN")
         mAliyunPlayerBinding.aliPlayer2.playerConfig =  mAliyunPlayerBinding.aliPlayer2.playerConfig.apply {
             mNetworkRetryCount = 10
             mNetworkTimeout = 60*1000

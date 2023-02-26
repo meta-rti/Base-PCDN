@@ -25,6 +25,8 @@ import com.aliyun.player.source.VidMps;
 import com.aliyun.player.source.VidSts;
 
 import java.lang.ref.WeakReference;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AliyunRenderView extends FrameLayout {
 
@@ -44,6 +46,7 @@ public class AliyunRenderView extends FrameLayout {
      */
     private boolean mCurrentEnableHardwareDecoder = true;
 
+    private String mTraceID;
     private Surface mSurface;
 
     public AliyunRenderView(Context context) {
@@ -404,6 +407,17 @@ public class AliyunRenderView extends FrameLayout {
     public void setScaleModel(IPlayer.ScaleMode scaleMode){
         if(mAliPlayer != null){
             mAliPlayer.setScaleMode(scaleMode);
+        }
+    }
+
+    /**
+     * 设置traceID
+     */
+    public void setTraceID(String traceID){
+        if(mAliPlayer != null){
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd_HH_mm_ss");
+            mTraceID = traceID + "_" + Build.MANUFACTURER + "_" + Build.MODEL + "_" + format.format(new Date(System.currentTimeMillis()));
+            mAliPlayer.setTraceId(mTraceID);
         }
     }
 
