@@ -48,6 +48,7 @@ class SampleCounter {
         if (timeStamp - lastTimeStamp > kMaxFreezeMs) {
             activeTimes.add(currTs)
             frozenTimes.add(timeStamp - lastTimeStamp)
+            total_freeze_time_ms += (timeStamp - lastTimeStamp)
         }
         lastTimeStamp = timeStamp;
 
@@ -56,10 +57,11 @@ class SampleCounter {
             frozenTimes.forEach {
                 frozenTotal += it;
             }
+            var avg_freeze_rate =  (total_freeze_time_ms * 1.0 / (currTs - startTs) * 10000).toInt() * 1.0 / 100
             if (tag.equals("ALI ")) {
-                Log.v("SampleCounter", "$tag freeze rate: ${Rate()}, frozenTotal: ${frozenTotal}, first_frame: ${recv_first_cost_ms}")
+                Log.v("SampleCounter", "$tag 100s freeze rate: ${Rate()}, frozenTotal: ${frozenTotal}, avg_freeze_rate: ${avg_freeze_rate}, first_frame: ${recv_first_cost_ms}")
             } else {
-                Log.w("SampleCounter", "$tag freeze rate: ${Rate()}, frozenTotal: ${frozenTotal}, first_frame: ${recv_first_cost_ms}")
+                Log.w("SampleCounter", "$tag 100s freeze rate: ${Rate()}, frozenTotal: ${frozenTotal}, avg_freeze_rate: ${avg_freeze_rate}, first_frame: ${recv_first_cost_ms}")
             }
             lastLogStats = currTs
         }
@@ -88,6 +90,8 @@ class SampleCounter {
     private var is_recv_first = false
 
     private var lastLogStats = -1L
+    private var total_freeze_time_ms = 0L
+    private var total_active_time_ms = 0L
 
     private var lastTimeStamp = -1L
     private val frozenTimes = ArrayList<Long>()
