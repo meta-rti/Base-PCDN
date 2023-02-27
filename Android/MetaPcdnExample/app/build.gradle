@@ -38,6 +38,9 @@ android {
         }
         release {
             signingConfig signingConfigs.release
+            multiDexEnabled true
+            zipAlignEnabled true
+            shrinkResources false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
