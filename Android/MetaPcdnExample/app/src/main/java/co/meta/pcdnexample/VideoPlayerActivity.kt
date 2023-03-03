@@ -437,8 +437,8 @@ class VideoPlayerActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        mAliyunPlayerBinding.aliPlayer?.stop()
-        mAliyunPlayerBinding.aliPlayer2?.stop()
+        mAliyunPlayerBinding.aliPlayer?.pause()
+        mAliyunPlayerBinding.aliPlayer2?.pause()
     }
 
     override fun onDestroy() {
