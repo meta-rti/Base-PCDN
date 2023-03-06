@@ -12,5 +12,14 @@
 		<string>audio</string>
 		<string>voip</string>
 	</array>
+	<key>AlivcLicenseFile</key>
+	<string>AliVideoCert.crt</string>
+	<key>AlivcLicenseKey</key>
+	<string>noC0jyhZ9igoJFXDf7e0205bb5b5f44d48feb989ac86dbd77</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5D605FBC74D102F49BB6E010 /* Pods_Meta_pcdn_Tutrial_Objective_C.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B602FB639476A32932D69E0 /* Pods_Meta_pcdn_Tutrial_Objective_C.framework */; };
+		BE0C613B29B58F9D00B00847 /* MetaALiPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BE0C613A29B58F9D00B00847 /* MetaALiPlayer.m */; };
 		BE414F812991123D00BC9D6F /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE414F802991123D00BC9D6F /* IJKMediaFramework.framework */; };
 		BE414F822991124500BC9D6F /* IJKMediaFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BE414F802991123D00BC9D6F /* IJKMediaFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BE6E373129AC857300CC730C /* MetaPCDNKit.xcframework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BE6F792829910C4E0059AE1D /* MetaPCDNKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -50,6 +51,8 @@
 /* Begin PBXFileReference section */
 		2F168D1177C251DEE37BC872 /* Pods-Meta-pcdn-Tutrial-Objective-C.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meta-pcdn-Tutrial-Objective-C.debug.xcconfig"; path = "Target Support Files/Pods-Meta-pcdn-Tutrial-Objective-C/Pods-Meta-pcdn-Tutrial-Objective-C.debug.xcconfig"; sourceTree = "<group>"; };
 		3B602FB639476A32932D69E0 /* Pods_Meta_pcdn_Tutrial_Objective_C.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Meta_pcdn_Tutrial_Objective_C.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE0C613929B58F9D00B00847 /* MetaALiPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaALiPlayer.h; sourceTree = "<group>"; };
+		BE0C613A29B58F9D00B00847 /* MetaALiPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaALiPlayer.m; sourceTree = "<group>"; };
 		BE414F802991123D00BC9D6F /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IJKMediaFramework.framework; path = "Meta-pcdn-Tutrial-Objective-C/IJKMediaFramework.framework"; sourceTree = "<group>"; };
 		BE414F832991131F00BC9D6F /* Key.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Key.h; sourceTree = "<group>"; };
 		BE6F790B29910B0A0059AE1D /* Meta-pcdn-Tutrial-Objective-C.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meta-pcdn-Tutrial-Objective-C.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,7 +78,6 @@
 		BED7725B29B4277400B89583 /* YsyRadio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YsyRadio.h; sourceTree = "<group>"; };
 		BED7725C29B4277400B89583 /* YsyRadioGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YsyRadioGroup.m; sourceTree = "<group>"; };
 		BED7726129B429AA00B89583 /* IPlayerEable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPlayerEable.h; sourceTree = "<group>"; };
-		BED7726229B4378900B89583 /* TXPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TXPlayer.h; sourceTree = "<group>"; };
 		BED7726329B4378900B89583 /* TXPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TXPlayer.m; sourceTree = "<group>"; };
 		BED7726529B438FF00B89583 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		BED7726729B4390500B89583 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
@@ -143,7 +145,8 @@
 				BEB7A9B82991F79000EC215B /* PCDNClientVC.m */,
 				BEB7A9B72991F79000EC215B /* IJKPlayer.h */,
 				BEB7A9BA2991F79000EC215B /* IJKPlayer.m */,
-				BED7726229B4378900B89583 /* TXPlayer.h */,
+				BE0C613929B58F9D00B00847 /* MetaALiPlayer.h */,
+				BE0C613A29B58F9D00B00847 /* MetaALiPlayer.m */,
 				BED7726329B4378900B89583 /* TXPlayer.m */,
 				BE6F790E29910B0A0059AE1D /* AppDelegate.h */,
 				BE6F790F29910B0A0059AE1D /* AppDelegate.m */,
@@ -321,6 +324,7 @@
 				BEB7A9BC2991F79000EC215B /* IJKPlayer.m in Sources */,
 				BED7726429B4378900B89583 /* TXPlayer.m in Sources */,
 				BE6F792129910B0C0059AE1D /* main.m in Sources */,
+				BE0C613B29B58F9D00B00847 /* MetaALiPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

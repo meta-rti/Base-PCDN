@@ -67,24 +67,36 @@
         make.height.mas_equalTo(40);
     }];
     
-    YsyRadio * hostRadio = [YsyRadio creatRadioWithName:@"ijkPlayer" val:@"1" selected:YES];
-    YsyRadio * audienceRadio = [YsyRadio creatRadioWithName:@"腾讯播放器" val:@"0" selected:NO];
+    YsyRadio * ijkPlayer = [YsyRadio creatRadioWithName:@"ijkPlayer" val:@"1" selected:YES];
+    YsyRadio * txPlayer = [YsyRadio creatRadioWithName:@"腾讯播放器" val:@"0" selected:NO];
+    YsyRadio * aliPlayer = [YsyRadio creatRadioWithName:@"阿里播放器" val:@"2" selected:NO];
     [YsyRadioGroup onView:self.view select:^(YsyRadio *radio) {
         if ([radio.val isEqualToString:@"1"]) {
             self.type = PlayerTypeIJK;
+        } else if ([radio.val isEqualToString:@"2"]) {
+            self.type = PlayerTypeALI;
         } else {
             self.type = PlayerTypeTX;
         }
         
-    } radios:hostRadio,audienceRadio,nil];
+    } radios:ijkPlayer,txPlayer,aliPlayer,nil];
     
-    [hostRadio mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.dropdownMenu.mas_left).offset(30);
+    ijkPlayer.titleLabel.font = [UIFont systemFontOfSize:14];
+    txPlayer.titleLabel.font = [UIFont systemFontOfSize:14];
+    aliPlayer.titleLabel.font = [UIFont systemFontOfSize:14];
+    
+    [ijkPlayer mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.dropdownMenu.mas_left).offset(0);
         make.top.equalTo(self.dropdownMenu.mas_bottom).offset(20);
         make.height.mas_equalTo(40);
     }];
-    [audienceRadio mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.dropdownMenu.mas_right).offset(-30);
+    [txPlayer mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ijkPlayer.mas_right).offset(10);
+        make.top.equalTo(self.dropdownMenu.mas_bottom).offset(20);
+        make.height.mas_equalTo(40);
+    }];
+    [aliPlayer mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(txPlayer.mas_right).offset(10);
         make.top.equalTo(self.dropdownMenu.mas_bottom).offset(20);
         make.height.mas_equalTo(40);
     }];

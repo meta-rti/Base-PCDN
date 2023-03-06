@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import <IQKeyboardManager/IQKeyboardManager.h>
 #import <TXLiteAVSDK_Professional/V2TXLivePremier.h>
+#include <AliyunPlayer/AliyunPlayer.h>
 #import "Key.h"
 @interface AppDelegate ()
 
@@ -20,7 +21,12 @@
     // Override point for customization after application launch.
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
-    [V2TXLivePremier setLicence:LICENSEURL key:LICENSEURLKEY];
+    
+//    [V2TXLivePremier setLicence:LICENSEURL key:LICENSEURLKEY];
+    
+    [AliPrivateService initLicenseService];
+    [AliPlayer setEnableLog:YES];
+    
     return YES;
 }
 

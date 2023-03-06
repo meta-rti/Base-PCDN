@@ -13,6 +13,7 @@
 #import "IJKPlayer.h"
 #import "TXPlayer.h"
 #import "SVProgressHUD.h"
+#import "MetaALiPlayer.h"
 
 
 @interface PCDNClientVC ()<MetaPCDNClientDelegate>
@@ -114,6 +115,10 @@
         self.playerView1 = [[IJKPlayer alloc] initWithFrame:CGRectZero];
         self.playerView1.playerType = PCDNPlayerTypePCDN;
         self.playerView2 = [[IJKPlayer alloc] initWithFrame:CGRectZero];
+    } else if (self.type == PlayerTypeALI) {
+        self.playerView1 = [[MetaALiPlayer alloc] initWithFrame:CGRectZero];
+        self.playerView1.playerType = PCDNPlayerTypePCDN;
+        self.playerView2 = [[MetaALiPlayer alloc] initWithFrame:CGRectZero];
     } else {
         self.playerView1 = [[TXPlayer alloc] initWithFrame:CGRectZero];
         self.playerView1.playerType = PCDNPlayerTypePCDN;
@@ -256,7 +261,7 @@
     NSString *logPath = [NSString stringWithFormat:@"%@/%@.log", path, [url lastPathComponent]];
     unlink([logPath UTF8String]);
 
-    [self.client setLogFilter:MetaPCDNLogFilterInfo];
+    [self.client setLogFilter:MetaPCDNLogFilterOff];
     [self.client setLogFile:logPath fileSize:10 * 1024 * 1024];
    
 

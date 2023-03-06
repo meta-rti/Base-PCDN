@@ -6,9 +6,12 @@
 //
 
 #import <TXLiteAVSDK_Professional/V2TXLivePlayer.h>
+#import <TXLiteAVSDK_Professional/TXLivePlayer.h>
 #import "Masonry.h"
 #import "TXPlayer.h"
-@interface TXPlayer ()<V2TXLivePlayerObserver>
+#define US_V2Player 1
+
+@interface TXPlayer ()<V2TXLivePlayerObserver,TXLivePlayListener,TXVideoCustomProcessDelegate>
 @property (nonatomic, strong) NSTimer *timer;
 
 @property (nonatomic, strong) UIView *playerView;
@@ -19,8 +22,11 @@
 
 @property (nonatomic, assign) NSTimeInterval playbtnClickedTime;
 @property (nonatomic, assign) NSTimeInterval reciverFirstFrameTime;
-
+#if US_V2Player
 @property (strong, nonatomic) V2TXLivePlayer *livePlayer;
+#else
+@property (nonatomic, strong) TXLivePlayer *livePlayer;
+#endif
 
 @property (nonatomic, strong) V2TXLivePlayerStatistics *curStatistics;
 
@@ -78,28 +84,7 @@
     return self;
 }
 
-- (void)play:(nonnull NSString *)url {
-    for (UIView * sbv in self.playerView.subviews) {
-        [sbv removeFromSuperview];
-    }
-    if (self.livePlayer) {
-        [self.livePlayer pauseVideo];
-        [self.livePlayer pauseVideo];
-        [self.livePlayer stopPlay];
-        self.livePlayer = nil;
-    }
 
-    self.playbtnClickedTime = [[NSDate date] timeIntervalSince1970];
-    self.reciverFirstFrameTime = -1;
-    self.livePlayer = [[V2TXLivePlayer alloc] init];
-    [self.livePlayer setCacheParams:0.1 maxTime:5];
-    [self.livePlayer setRenderView:self.playerView];
-    [self.livePlayer setRenderFillMode:V2TXLiveFillModeScaleFill];
-    [self.livePlayer setObserver:self];
-    [self.livePlayer startLivePlay:url];
-    [self.livePlayer showDebugView:YES];
-    [self startTime];
-}
 
 - (void)releaseHudView {
 }
@@ -147,14 +132,73 @@
 }
 
 - (void)pause {
+#if US_V2Player
     [self.livePlayer pauseVideo];
     [self.livePlayer pauseAudio];
+#else
+    [self.livePlayer pause];
+#endif
 }
 
 - (void)resume {
+#if US_V2Player
     [self.livePlayer resumeVideo];
     [self.livePlayer resumeAudio];
+#else
+    [self.livePlayer resume];
+#endif
+
+    
+    
 }
+
+- (void)play:(nonnull NSString *)url {
+    for (UIView * sbv in self.playerView.subviews) {
+        [sbv removeFromSuperview];
+    }
+#if US_V2Player
+    if (self.livePlayer) {
+        [self.livePlayer pauseVideo];
+        [self.livePlayer pauseVideo];
+        [self.livePlayer stopPlay];
+        self.livePlayer = nil;
+    }
+
+    self.playbtnClickedTime = [[NSDate date] timeIntervalSince1970];
+    self.reciverFirstFrameTime = -1;
+    self.livePlayer = [[V2TXLivePlayer alloc] init];
+    [self.livePlayer setCacheParams:0.1 maxTime:5];
+    [self.livePlayer setRenderView:self.playerView];
+//    [self.livePlayer setRenderFillMode:V2TXLiveFillModeScaleFill];
+    [self.livePlayer setObserver:self];
+//    [self.livePlayer startLivePlay:url];
+    [self.livePlayer startPlay:url];
+    
+    
+    [self.livePlayer showDebugView:YES];
+#else
+    if (self.livePlayer) {
+        [self.livePlayer pause];
+        [self.livePlayer stopPlay];
+        self.livePlayer = nil;
+    }
+    self.playbtnClickedTime = [[NSDate date] timeIntervalSince1970];
+    self.reciverFirstFrameTime = -1;
+    self.livePlayer = [[TXLivePlayer alloc] init];
+    self.livePlayer.config =  [[TXLivePlayConfig alloc] init];
+    [self.livePlayer startPlay:url type:PLAY_TYPE_LIVE_RTMP];
+    self.livePlayer.delegate = self;
+    self.livePlayer.videoProcessDelegate = self;
+    self.livePlayer.enableHWAcceleration = YES;
+    self.livePlayer.isAutoPlay = YES;
+    self.livePlayer.isAutoPlay = YES;
+    [self.livePlayer setupVideoWidget:self.playerView.bounds containView:self.playerView insertIndex:0];
+#endif
+    [self startTime];
+    self.playURL = url;
+}
+
+
 
 - (void)stop {
     [self.livePlayer stopPlay];
@@ -188,5 +232,10 @@
     [self.livePlayer stopPlay];
     self.livePlayer = nil;
 }
+
+- (void)onPlayEvent:(int)evtID withParam:(NSDictionary *)param {
+    NSLog(@"onPlayEvent = %@",param);
+}
+
 
 @end

@@ -10,5 +10,6 @@ target 'Meta-pcdn-Tutrial-Objective-C' do
   pod 'LMJDropdownMenu'
   pod 'SVProgressHUD'
   pod 'IQKeyboardManager'
-  pod 'TXLiteAVSDK_Professional'
+  pod 'TXLiteAVSDK_Professional', '10.6.11822'
+  pod 'AliPlayerSDK_iOS'
 end
