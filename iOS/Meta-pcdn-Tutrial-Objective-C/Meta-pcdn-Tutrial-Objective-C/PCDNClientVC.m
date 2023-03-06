@@ -10,13 +10,14 @@
 #import "LMJDropdownMenu.h"
 #import "Masonry.h"
 #import "PCDNClientVC.h"
-#import "PCDNPlayer.h"
+#import "IJKPlayer.h"
+#import "TXPlayer.h"
 #import "SVProgressHUD.h"
 
 
 @interface PCDNClientVC ()<MetaPCDNClientDelegate>
-@property (nonatomic, strong) PCDNPlayer *playerView1;
-@property (nonatomic, strong) PCDNPlayer *playerView2;
+@property (nonatomic, strong) UIView<IPlayerEable> *playerView1;
+@property (nonatomic, strong) UIView<IPlayerEable> *playerView2;
 
 @property (nonatomic, strong) UITextField *urlInputField;
 
@@ -62,6 +63,23 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidEnterBackground:)
+                                                 name:UIApplicationDidEnterBackgroundNotification object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidEnterActiveground:)
+                                                 name:UIApplicationWillEnterForegroundNotification object:nil];
+}
+
+- (void)applicationDidEnterBackground:(NSNotification *)notif {
+    [self.playerView1 pause];
+    [self.playerView2 pause];
+}
+
+- (void)applicationDidEnterActiveground:(NSNotification *)notif {
+    [self.playerView1 resume];
+    [self.playerView2 resume];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -76,6 +94,10 @@
     [self.client destoryLocalStream:self.locoalUrl];
 
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
+    
 }
 
 - (void)viewDidLoad {
@@ -88,8 +110,16 @@
     self.view.backgroundColor = [UIColor whiteColor];
 
 
-    self.playerView1 = [[PCDNPlayer alloc] initWithFrame:CGRectZero];
-    self.playerView1.playerType = PCDNPlayerTypePCDN;
+    if(self.type == PlayerTypeIJK) {
+        self.playerView1 = [[IJKPlayer alloc] initWithFrame:CGRectZero];
+        self.playerView1.playerType = PCDNPlayerTypePCDN;
+        self.playerView2 = [[IJKPlayer alloc] initWithFrame:CGRectZero];
+    } else {
+        self.playerView1 = [[TXPlayer alloc] initWithFrame:CGRectZero];
+        self.playerView1.playerType = PCDNPlayerTypePCDN;
+        self.playerView2 = [[TXPlayer alloc] initWithFrame:CGRectZero];
+    }
+    
     [self.view addSubview:self.playerView1];
 
     CGFloat statusHeight = [self statusBarHeight];
@@ -138,7 +168,7 @@
         make.height.mas_equalTo(40);
     }];
 
-    self.playerView2 = [[PCDNPlayer alloc] initWithFrame:CGRectZero];
+    
     [self.view addSubview:self.playerView2];
 
     [self.playerView2 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -227,7 +257,7 @@
     unlink([logPath UTF8String]);
 
     [self.client setLogFile:logPath fileSize:10 * 1024 * 1024];
-    [self.client setLogFilter:MetaPCDNLogFilterInfo];
+    [self.client setLogFilter:MetaPCDNLogFilterOff];
 
     // destory old local proxy url
     [self.client destoryLocalStream:self.locoalUrl];

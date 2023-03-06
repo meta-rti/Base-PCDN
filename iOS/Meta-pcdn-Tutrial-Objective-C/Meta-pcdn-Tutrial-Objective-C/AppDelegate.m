@@ -7,6 +7,8 @@
 
 #import "AppDelegate.h"
 #import <IQKeyboardManager/IQKeyboardManager.h>
+#import <TXLiteAVSDK_Professional/V2TXLivePremier.h>
+#import "Key.h"
 @interface AppDelegate ()
 
 @end
@@ -18,6 +20,7 @@
     // Override point for customization after application launch.
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+    [V2TXLivePremier setLicence:LICENSEURL key:LICENSEURLKEY];
     return YES;
 }
 

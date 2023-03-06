@@ -11,11 +11,14 @@
 #import <MetaPCDNKit/MetaPCDNKit.h>
 #import "PCDNClientVC.h"
 #import "SVProgressHUD.h"
+#import "YsyRadio.h"
+#import "YsyRadioGroup.h"
 @interface HomeVC ()<LMJDropdownMenuDataSource,LMJDropdownMenuDelegate>
 @property (weak, nonatomic) IBOutlet UIView *urlSelectArea;
 @property(nonatomic,strong)NSArray * dataSource;
 @property(nonatomic,strong)LMJDropdownMenu * dropdownMenu;
 @property(nonatomic,strong)NSString * selectedURL;
+@property(nonatomic,assign)PlayerType type;
 @end
 
 @implementation HomeVC
@@ -36,6 +39,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.type = PlayerTypeIJK;
     
     self.dropdownMenu = [[LMJDropdownMenu alloc] initWithFrame:CGRectZero];
     [self.urlSelectArea addSubview:self.dropdownMenu];
@@ -61,6 +66,28 @@
         make.right.mas_equalTo(-30);
         make.height.mas_equalTo(40);
     }];
+    
+    YsyRadio * hostRadio = [YsyRadio creatRadioWithName:@"ijkPlayer" val:@"1" selected:YES];
+    YsyRadio * audienceRadio = [YsyRadio creatRadioWithName:@"腾讯播放器" val:@"0" selected:NO];
+    [YsyRadioGroup onView:self.view select:^(YsyRadio *radio) {
+        if ([radio.val isEqualToString:@"1"]) {
+            self.type = PlayerTypeIJK;
+        } else {
+            self.type = PlayerTypeTX;
+        }
+        
+    } radios:hostRadio,audienceRadio,nil];
+    
+    [hostRadio mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.dropdownMenu.mas_left).offset(30);
+        make.top.equalTo(self.dropdownMenu.mas_bottom).offset(20);
+        make.height.mas_equalTo(40);
+    }];
+    [audienceRadio mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.dropdownMenu.mas_right).offset(-30);
+        make.top.equalTo(self.dropdownMenu.mas_bottom).offset(20);
+        make.height.mas_equalTo(40);
+    }];
 }
 - (IBAction)enterRoom:(id)sender {
     if(self.selectedURL.length <= 0 ) {
@@ -70,6 +97,7 @@
     }
     PCDNClientVC * clientVC = [[PCDNClientVC alloc] init];
     clientVC.playerURL = self.selectedURL;
+    clientVC.type = self.type;
     [self.navigationController pushViewController:clientVC animated:YES];
 }
 

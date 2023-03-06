@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5D605FBC74D102F49BB6E010 /* Pods_Meta_pcdn_Tutrial_Objective_C.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B602FB639476A32932D69E0 /* Pods_Meta_pcdn_Tutrial_Objective_C.framework */; };
-		BE414F7E29910CAA00BC9D6F /* MetaPCDNKit.xcframework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BE6F792829910C4E0059AE1D /* MetaPCDNKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BE414F812991123D00BC9D6F /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE414F802991123D00BC9D6F /* IJKMediaFramework.framework */; };
 		BE414F822991124500BC9D6F /* IJKMediaFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BE414F802991123D00BC9D6F /* IJKMediaFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BE6E373129AC857300CC730C /* MetaPCDNKit.xcframework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BE6F792829910C4E0059AE1D /* MetaPCDNKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BE6F791029910B0A0059AE1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6F790F29910B0A0059AE1D /* AppDelegate.m */; };
 		BE6F791929910B0A0059AE1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE6F791729910B0A0059AE1D /* Main.storyboard */; };
 		BE6F791B29910B0C0059AE1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE6F791A29910B0C0059AE1D /* Assets.xcassets */; };
@@ -18,8 +18,19 @@
 		BE6F792129910B0C0059AE1D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6F792029910B0C0059AE1D /* main.m */; };
 		BE6F792929910C4E0059AE1D /* MetaPCDNKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE6F792829910C4E0059AE1D /* MetaPCDNKit.xcframework */; };
 		BEB7A9BB2991F79000EC215B /* PCDNClientVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB7A9B82991F79000EC215B /* PCDNClientVC.m */; };
-		BEB7A9BC2991F79000EC215B /* PCDNPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB7A9BA2991F79000EC215B /* PCDNPlayer.m */; };
+		BEB7A9BC2991F79000EC215B /* IJKPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB7A9BA2991F79000EC215B /* IJKPlayer.m */; };
 		BEB7A9BF2991FB2C00EC215B /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB7A9BD2991FB2C00EC215B /* HomeVC.m */; };
+		BED7725D29B4277400B89583 /* unSelectRadio@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BED7725629B4277400B89583 /* unSelectRadio@3x.png */; };
+		BED7725E29B4277400B89583 /* selectRadio@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BED7725729B4277400B89583 /* selectRadio@3x.png */; };
+		BED7725F29B4277400B89583 /* YsyRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = BED7725929B4277400B89583 /* YsyRadio.m */; };
+		BED7726029B4277400B89583 /* YsyRadioGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = BED7725C29B4277400B89583 /* YsyRadioGroup.m */; };
+		BED7726429B4378900B89583 /* TXPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BED7726329B4378900B89583 /* TXPlayer.m */; };
+		BED7726629B438FF00B89583 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED7726529B438FF00B89583 /* Accelerate.framework */; };
+		BED7726829B4390500B89583 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED7726729B4390500B89583 /* ReplayKit.framework */; };
+		BED7726A29B4391700B89583 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED7726929B4391700B89583 /* MobileCoreServices.framework */; };
+		BED7726C29B4393200B89583 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BED7726B29B4393200B89583 /* libc++.tbd */; };
+		BED7726E29B4394200B89583 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED7726D29B4394200B89583 /* CoreTelephony.framework */; };
+		BED7727029B4396700B89583 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED7726F29B4396700B89583 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,8 +40,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				BE6E373129AC857300CC730C /* MetaPCDNKit.xcframework in CopyFiles */,
 				BE414F822991124500BC9D6F /* IJKMediaFramework.framework in CopyFiles */,
-				BE414F7E29910CAA00BC9D6F /* MetaPCDNKit.xcframework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,12 +61,28 @@
 		BE6F791F29910B0C0059AE1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE6F792029910B0C0059AE1D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BE6F792829910C4E0059AE1D /* MetaPCDNKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MetaPCDNKit.xcframework; path = ../SDKs/MetaPCDNKit.xcframework; sourceTree = "<group>"; };
-		BEB7A9B72991F79000EC215B /* PCDNPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCDNPlayer.h; sourceTree = "<group>"; };
+		BEB7A9B72991F79000EC215B /* IJKPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJKPlayer.h; sourceTree = "<group>"; };
 		BEB7A9B82991F79000EC215B /* PCDNClientVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCDNClientVC.m; sourceTree = "<group>"; };
 		BEB7A9B92991F79000EC215B /* PCDNClientVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCDNClientVC.h; sourceTree = "<group>"; };
-		BEB7A9BA2991F79000EC215B /* PCDNPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCDNPlayer.m; sourceTree = "<group>"; };
+		BEB7A9BA2991F79000EC215B /* IJKPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJKPlayer.m; sourceTree = "<group>"; };
 		BEB7A9BD2991FB2C00EC215B /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
 		BEB7A9BE2991FB2C00EC215B /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
+		BED7725629B4277400B89583 /* unSelectRadio@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unSelectRadio@3x.png"; sourceTree = "<group>"; };
+		BED7725729B4277400B89583 /* selectRadio@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selectRadio@3x.png"; sourceTree = "<group>"; };
+		BED7725829B4277400B89583 /* YsyRadioGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YsyRadioGroup.h; sourceTree = "<group>"; };
+		BED7725929B4277400B89583 /* YsyRadio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YsyRadio.m; sourceTree = "<group>"; };
+		BED7725A29B4277400B89583 /* YsyRadios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YsyRadios.h; sourceTree = "<group>"; };
+		BED7725B29B4277400B89583 /* YsyRadio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YsyRadio.h; sourceTree = "<group>"; };
+		BED7725C29B4277400B89583 /* YsyRadioGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YsyRadioGroup.m; sourceTree = "<group>"; };
+		BED7726129B429AA00B89583 /* IPlayerEable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPlayerEable.h; sourceTree = "<group>"; };
+		BED7726229B4378900B89583 /* TXPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TXPlayer.h; sourceTree = "<group>"; };
+		BED7726329B4378900B89583 /* TXPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TXPlayer.m; sourceTree = "<group>"; };
+		BED7726529B438FF00B89583 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		BED7726729B4390500B89583 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
+		BED7726929B4391700B89583 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		BED7726B29B4393200B89583 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		BED7726D29B4394200B89583 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		BED7726F29B4396700B89583 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E81BAC31B08FDA0C904EA30D /* Pods-Meta-pcdn-Tutrial-Objective-C.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meta-pcdn-Tutrial-Objective-C.release.xcconfig"; path = "Target Support Files/Pods-Meta-pcdn-Tutrial-Objective-C/Pods-Meta-pcdn-Tutrial-Objective-C.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +91,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BED7727029B4396700B89583 /* SystemConfiguration.framework in Frameworks */,
+				BED7726E29B4394200B89583 /* CoreTelephony.framework in Frameworks */,
+				BED7726C29B4393200B89583 /* libc++.tbd in Frameworks */,
+				BED7726A29B4391700B89583 /* MobileCoreServices.framework in Frameworks */,
+				BED7726829B4390500B89583 /* ReplayKit.framework in Frameworks */,
+				BED7726629B438FF00B89583 /* Accelerate.framework in Frameworks */,
 				BE414F812991123D00BC9D6F /* IJKMediaFramework.framework in Frameworks */,
 				BE6F792929910C4E0059AE1D /* MetaPCDNKit.xcframework in Frameworks */,
 				5D605FBC74D102F49BB6E010 /* Pods_Meta_pcdn_Tutrial_Objective_C.framework in Frameworks */,
@@ -103,15 +136,19 @@
 		BE6F790D29910B0A0059AE1D /* Meta-pcdn-Tutrial-Objective-C */ = {
 			isa = PBXGroup;
 			children = (
+				BED7725429B4277400B89583 /* YsyRadio */,
 				BEB7A9BE2991FB2C00EC215B /* HomeVC.h */,
 				BEB7A9BD2991FB2C00EC215B /* HomeVC.m */,
 				BEB7A9B92991F79000EC215B /* PCDNClientVC.h */,
 				BEB7A9B82991F79000EC215B /* PCDNClientVC.m */,
-				BEB7A9B72991F79000EC215B /* PCDNPlayer.h */,
-				BEB7A9BA2991F79000EC215B /* PCDNPlayer.m */,
+				BEB7A9B72991F79000EC215B /* IJKPlayer.h */,
+				BEB7A9BA2991F79000EC215B /* IJKPlayer.m */,
+				BED7726229B4378900B89583 /* TXPlayer.h */,
+				BED7726329B4378900B89583 /* TXPlayer.m */,
 				BE6F790E29910B0A0059AE1D /* AppDelegate.h */,
 				BE6F790F29910B0A0059AE1D /* AppDelegate.m */,
 				BE414F832991131F00BC9D6F /* Key.h */,
+				BED7726129B429AA00B89583 /* IPlayerEable.h */,
 				BE6F791729910B0A0059AE1D /* Main.storyboard */,
 				BE6F791A29910B0C0059AE1D /* Assets.xcassets */,
 				BE6F791C29910B0C0059AE1D /* LaunchScreen.storyboard */,
@@ -124,11 +161,39 @@
 		BE6F792729910C4E0059AE1D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BED7726F29B4396700B89583 /* SystemConfiguration.framework */,
+				BED7726D29B4394200B89583 /* CoreTelephony.framework */,
+				BED7726B29B4393200B89583 /* libc++.tbd */,
+				BED7726929B4391700B89583 /* MobileCoreServices.framework */,
+				BED7726729B4390500B89583 /* ReplayKit.framework */,
+				BED7726529B438FF00B89583 /* Accelerate.framework */,
 				BE414F802991123D00BC9D6F /* IJKMediaFramework.framework */,
 				BE6F792829910C4E0059AE1D /* MetaPCDNKit.xcframework */,
 				3B602FB639476A32932D69E0 /* Pods_Meta_pcdn_Tutrial_Objective_C.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BED7725429B4277400B89583 /* YsyRadio */ = {
+			isa = PBXGroup;
+			children = (
+				BED7725529B4277400B89583 /* source */,
+				BED7725829B4277400B89583 /* YsyRadioGroup.h */,
+				BED7725929B4277400B89583 /* YsyRadio.m */,
+				BED7725A29B4277400B89583 /* YsyRadios.h */,
+				BED7725B29B4277400B89583 /* YsyRadio.h */,
+				BED7725C29B4277400B89583 /* YsyRadioGroup.m */,
+			);
+			path = YsyRadio;
+			sourceTree = "<group>";
+		};
+		BED7725529B4277400B89583 /* source */ = {
+			isa = PBXGroup;
+			children = (
+				BED7725629B4277400B89583 /* unSelectRadio@3x.png */,
+				BED7725729B4277400B89583 /* selectRadio@3x.png */,
+			);
+			path = source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +256,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BED7725E29B4277400B89583 /* selectRadio@3x.png in Resources */,
+				BED7725D29B4277400B89583 /* unSelectRadio@3x.png in Resources */,
 				BE6F791E29910B0C0059AE1D /* LaunchScreen.storyboard in Resources */,
 				BE6F791B29910B0C0059AE1D /* Assets.xcassets in Resources */,
 				BE6F791929910B0A0059AE1D /* Main.storyboard in Resources */,
@@ -247,9 +314,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEB7A9BB2991F79000EC215B /* PCDNClientVC.m in Sources */,
+				BED7725F29B4277400B89583 /* YsyRadio.m in Sources */,
+				BED7726029B4277400B89583 /* YsyRadioGroup.m in Sources */,
 				BE6F791029910B0A0059AE1D /* AppDelegate.m in Sources */,
 				BEB7A9BF2991FB2C00EC215B /* HomeVC.m in Sources */,
-				BEB7A9BC2991F79000EC215B /* PCDNPlayer.m in Sources */,
+				BEB7A9BC2991F79000EC215B /* IJKPlayer.m in Sources */,
+				BED7726429B4378900B89583 /* TXPlayer.m in Sources */,
 				BE6F792129910B0C0059AE1D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

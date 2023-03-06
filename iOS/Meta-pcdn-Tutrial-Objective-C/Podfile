@@ -10,4 +10,5 @@ target 'Meta-pcdn-Tutrial-Objective-C' do
   pod 'LMJDropdownMenu'
   pod 'SVProgressHUD'
   pod 'IQKeyboardManager'
+  pod 'TXLiteAVSDK_Professional'
 end
