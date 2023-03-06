@@ -256,8 +256,9 @@
     NSString *logPath = [NSString stringWithFormat:@"%@/%@.log", path, [url lastPathComponent]];
     unlink([logPath UTF8String]);
 
+    [self.client setLogFilter:MetaPCDNLogFilterInfo];
     [self.client setLogFile:logPath fileSize:10 * 1024 * 1024];
-    [self.client setLogFilter:MetaPCDNLogFilterOff];
+   
 
     // destory old local proxy url
     [self.client destoryLocalStream:self.locoalUrl];
