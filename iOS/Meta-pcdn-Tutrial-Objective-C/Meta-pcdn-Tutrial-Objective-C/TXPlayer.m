@@ -169,9 +169,7 @@
     self.livePlayer = [[V2TXLivePlayer alloc] init];
     [self.livePlayer setCacheParams:0.1 maxTime:5];
     [self.livePlayer setRenderView:self.playerView];
-//    [self.livePlayer setRenderFillMode:V2TXLiveFillModeScaleFill];
     [self.livePlayer setObserver:self];
-//    [self.livePlayer startLivePlay:url];
     [self.livePlayer startPlay:url];
     
     
@@ -237,5 +235,7 @@
     NSLog(@"onPlayEvent = %@",param);
 }
 
-
+- (void)onNetStatus:(NSDictionary *)param {
+    
+}
 @end
