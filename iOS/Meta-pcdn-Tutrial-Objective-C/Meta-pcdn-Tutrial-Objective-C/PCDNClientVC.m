@@ -261,7 +261,7 @@
     NSString *logPath = [NSString stringWithFormat:@"%@/%@.log", path, [url lastPathComponent]];
     unlink([logPath UTF8String]);
 
-    [self.client setLogFilter:MetaPCDNLogFilterOff];
+    [self.client setLogFilter:MetaPCDNLogFilterInfo];
     [self.client setLogFile:logPath fileSize:10 * 1024 * 1024];
    
 
