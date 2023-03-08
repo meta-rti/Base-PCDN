@@ -36,7 +36,6 @@
     if (_client == nil) {
         MetaPCDNClientConfig *config = [[MetaPCDNClientConfig alloc] init];
         config.cid = CID;
-        config.vid = VID;
         config.token = Token;
         _client = [MetaPCDNClient shareClientConfig:config];
         _client.delegate = self;
@@ -268,7 +267,7 @@
     // destory old local proxy url
     [self.client destoryLocalStream:self.locoalUrl];
     //create new  local proxy url
-    NSString *proxyUrl = [self.client createLocalStream:urlStr];
+    NSString *proxyUrl = [self.client createLocalStream:urlStr vid:VID];
 
     //player local url
     [self.playerView1 play:proxyUrl];
@@ -283,7 +282,7 @@
 }
 
 #pragma mark MetaPCDNClientDelegate
-- (void)client:(MetaPCDNClient *)client onError:(MetaPCDNErrorCode)error remoteUrl:(NSString *)remoteURL localUrl:(nonnull NSString *)localURL msg:(NSString *)message {
+- (void)client:(MetaPCDNClient *)client onError:(MetaPCDNErrorCode)error remoteUrl:(NSString *)remoteURL localUrl:(nonnull NSString *)localURL vid:(nonnull NSString *)vid msg:(NSString *)message {
     NSString *log = [NSString stringWithFormat:@"remoteURL : %@  localUrl = %@ error : %ld msg:%@ ", remoteURL, localURL, error, message];
 
     NSLog(@"%@", log);
@@ -315,13 +314,13 @@
     }
 }
 
-- (void)client:(MetaPCDNClient *)client onWarning:(int)warn remoteUrl:(NSString *)remoteURL localUrl:(nonnull NSString *)localURL msg:(NSString *)message {
+- (void)client:(MetaPCDNClient *)client onWarning:(int)warn remoteUrl:(NSString *)remoteURL localUrl:(nonnull NSString *)localURL vid:(nonnull NSString *)vid msg:(NSString *)message {
     NSString *log = [NSString stringWithFormat:@"remoteURL : %@ localUlr = %@ warring : %d msg:%@ ", remoteURL, localURL, warn, message];
 
     NSLog(@"%@ ", log);
 }
 
-- (void)client:(nonnull MetaPCDNClient *)client remoteUrl:(nonnull NSString *)remoteURL sourceFromType:(MetaDataSourceType)sourceType {
+- (void)client:(nonnull MetaPCDNClient *)client remoteUrl:(nonnull NSString *)remoteURL vid:(nonnull NSString *)vid sourceFromType:(MetaDataSourceType)sourceType {
 }
 
 /*

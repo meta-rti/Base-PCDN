@@ -170,7 +170,7 @@
     [self.livePlayer setCacheParams:0.1 maxTime:5];
     [self.livePlayer setRenderView:self.playerView];
     [self.livePlayer setObserver:self];
-    [self.livePlayer startPlay:url];
+    [self.livePlayer startLivePlay:url];
     
     
     [self.livePlayer showDebugView:YES];
@@ -184,7 +184,7 @@
     self.reciverFirstFrameTime = -1;
     self.livePlayer = [[TXLivePlayer alloc] init];
     self.livePlayer.config =  [[TXLivePlayConfig alloc] init];
-    [self.livePlayer startPlay:url type:PLAY_TYPE_LIVE_RTMP];
+    [self.livePlayer startLivePlay:url type:PLAY_TYPE_LIVE_RTMP];
     self.livePlayer.delegate = self;
     self.livePlayer.videoProcessDelegate = self;
     self.livePlayer.enableHWAcceleration = YES;
