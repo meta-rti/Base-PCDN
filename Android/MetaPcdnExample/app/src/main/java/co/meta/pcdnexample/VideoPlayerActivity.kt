@@ -113,6 +113,7 @@ class VideoPlayerActivity : AppCompatActivity() {
     private var mPlayerState = 0
     private var mPlayer2State = 0
     private var mBoxIp =""
+    private var mVid =""
 
     private lateinit var mAliyunPlayerBinding: ActivityVideoPlayerBinding
 
@@ -180,7 +181,7 @@ class VideoPlayerActivity : AppCompatActivity() {
                 MetaPcdnClient.getInstance().destroyLocalStreamUrl(mCurrentPlaying)
                 Log.d(TAG, "createLocalStreamUrl  destroyLocalStreamUrl cost : ${System.currentTimeMillis() - curr_ts}")
             }
-            val result = MetaPcdnClient.getInstance().createLocalStreamUrl(mCurrentUrl)
+            val result = MetaPcdnClient.getInstance().createLocalStreamUrl(mCurrentUrl,mVid)
             Log.d(TAG, "createLocalStreamUrl  createLocalStreamUrl cost : ${System.currentTimeMillis() - curr_ts}")
 
             if (!TextUtils.isEmpty(result)) {
@@ -198,16 +199,16 @@ class VideoPlayerActivity : AppCompatActivity() {
         }
 
         MetaPcdnClient.getInstance().setPCDNManagerHandler(object : IPCDNManagerEventHandler {
-            override fun OnWarning(remote_stream_url: String?,output_local_url: String, warn: Int, msg: String?) {
-                Log.d(TAG, "OnWarning: url = $remote_stream_url ,output_local_url = $output_local_url, warn = $warn , msg = $msg")
+            override fun OnWarning(remote_stream_url: String?,output_local_url: String,vid: String, warn: Int, msg: String?) {
+                Log.d(TAG, "OnWarning: url = $remote_stream_url ,output_local_url = $output_local_url, vid= $vid,  warn = $warn , msg = $msg")
             }
 
-            override fun OnError(remote_stream_url: String?,output_local_url: String, err: Int, msg: String?) {
-                Log.d(TAG, "OnError: url = $remote_stream_url ,output_local_url = $output_local_url, err = $err , msg = $msg")
+            override fun OnError(remote_stream_url: String?,output_local_url: String,vid: String, err: Int, msg: String?) {
+                Log.d(TAG, "OnError: url = $remote_stream_url ,output_local_url = $output_local_url, vid= $vid,  err = $err , msg = $msg")
             }
 
-            override fun OnDataSource(remote_stream_url: String, output_local_url: String,type: DATA_SOURCE_TYPE,box_ip : String) {
-                Log.d(TAG, "OnDataSource: url = $remote_stream_url , output_local_url = $output_local_url, type = $type")
+            override fun OnDataSource(remote_stream_url: String, output_local_url: String,vid: String,type: DATA_SOURCE_TYPE,box_ip : String) {
+                Log.d(TAG, "OnDataSource: url = $remote_stream_url , output_local_url = $output_local_url, vid= $vid,  type = $type")
                 runOnUiThread {
                     if (remote_stream_url.equals(mCurrentUrl)) {
                         mAliyunPlayerBinding.tvTips1.text =
