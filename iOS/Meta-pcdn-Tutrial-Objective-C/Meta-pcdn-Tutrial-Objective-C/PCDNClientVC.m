@@ -36,7 +36,6 @@
     if (_client == nil) {
         MetaPCDNClientConfig *config = [[MetaPCDNClientConfig alloc] init];
         config.cid = CID;
-        config.token = Token;
         _client = [MetaPCDNClient shareClientConfig:config];
         _client.delegate = self;
     }
@@ -267,7 +266,7 @@
     // destory old local proxy url
     [self.client destoryLocalStream:self.locoalUrl];
     //create new  local proxy url
-    NSString *proxyUrl = [self.client createLocalStream:urlStr vid:VID];
+    NSString *proxyUrl = [self.client createLocalStream:urlStr vid:VID token:@""];
 
     //player local url
     [self.playerView1 play:proxyUrl];

@@ -10,7 +10,6 @@
 
 #define  CID @"00000000000000000000000000000001"
 #define  VID @""
-#define  Token @""
 
 
 /**

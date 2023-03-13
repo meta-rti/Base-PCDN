@@ -2,21 +2,25 @@ PODS:
   - AliPlayerSDK_iOS (5.5.3.0):
     - AliPlayerSDK_iOS/AliPlayerSDK (= 5.5.3.0)
   - AliPlayerSDK_iOS/AliPlayerSDK (5.5.3.0)
-  - IQKeyboardManager (6.5.10)
+  - IQKeyboardManager (6.5.11)
   - LMJDropdownMenu (3.0.4)
   - Masonry (1.1.0)
+  - MetaPCDNKit_iOS (0.1.4):
+    - MetaPCDNKit_iOS/MetaPCDNKit (= 0.1.4)
+  - MetaPCDNKit_iOS/MetaPCDNKit (0.1.4)
   - SVProgressHUD (2.2.5)
-  - TXLiteAVSDK_Professional (10.6.11822):
-    - TXLiteAVSDK_Professional/Professional (= 10.6.11822)
-  - TXLiteAVSDK_Professional/Professional (10.6.11822)
+  - TXLiteAVSDK_Professional (11.0.14016):
+    - TXLiteAVSDK_Professional/Professional (= 11.0.14016)
+  - TXLiteAVSDK_Professional/Professional (11.0.14016)
 
 DEPENDENCIES:
   - AliPlayerSDK_iOS
   - IQKeyboardManager
   - LMJDropdownMenu
   - Masonry
+  - MetaPCDNKit_iOS
   - SVProgressHUD
-  - TXLiteAVSDK_Professional (= 10.6.11822)
+  - TXLiteAVSDK_Professional
 
 SPEC REPOS:
   trunk:
@@ -24,17 +28,19 @@ SPEC REPOS:
     - IQKeyboardManager
     - LMJDropdownMenu
     - Masonry
+    - MetaPCDNKit_iOS
     - SVProgressHUD
     - TXLiteAVSDK_Professional
 
 SPEC CHECKSUMS:
   AliPlayerSDK_iOS: 5d8abf1de4ed1fe5bc53ce36ebaab40902ad44b8
-  IQKeyboardManager: 45a1fa55c1a5b02c61ac0fd7fd5b62bb4ad20d97
+  IQKeyboardManager: ef43ce1ba1e5aaf4adf222c0a46f39761f246879
   LMJDropdownMenu: 50c74e9d50a480c290fec47eb575826861d0823b
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MetaPCDNKit_iOS: 61f50f614d201991b6c3d8b007bd58a01deb2401
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  TXLiteAVSDK_Professional: bf4a21487cc98d973af4fb0589b215abcbf67dd0
+  TXLiteAVSDK_Professional: 20495fbea0b1efa4b66c1073460efc5f189e59db
 
-PODFILE CHECKSUM: 9afa4b83bf34d4e25e51b3bb673125f9993682ff
+PODFILE CHECKSUM: f7f8033ae4b9f51788b5fb3f3013200485105aac
 
 COCOAPODS: 1.11.3
