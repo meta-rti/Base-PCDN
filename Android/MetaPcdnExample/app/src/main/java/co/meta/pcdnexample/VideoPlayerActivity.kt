@@ -22,6 +22,7 @@ import com.aliyun.player.bean.InfoBean
 import com.aliyun.player.source.UrlSource
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.random.Random
 
 
 class SampleCounter {
@@ -114,6 +115,8 @@ class VideoPlayerActivity : AppCompatActivity() {
     private var mPlayer2State = 0
     private var mBoxIp =""
     private var mVid =""
+    private var mToken = ""
+    private var mUrlExpireTimeSec = 20 //url有效期,建议大于10秒
 
     private lateinit var mAliyunPlayerBinding: ActivityVideoPlayerBinding
 
@@ -181,9 +184,12 @@ class VideoPlayerActivity : AppCompatActivity() {
                 MetaPcdnClient.getInstance().destroyLocalStreamUrl(mCurrentPlaying)
                 Log.d(TAG, "createLocalStreamUrl  destroyLocalStreamUrl cost : ${System.currentTimeMillis() - curr_ts}")
             }
-            val result = MetaPcdnClient.getInstance().createLocalStreamUrl(mCurrentUrl,mVid)
+            //当不是动态url的时候，vid就直接使用url
+            mVid = mCurrentUrl
+            val result = MetaPcdnClient.getInstance().createLocalStreamUrl(mCurrentUrl,mVid,mToken)
             Log.d(TAG, "createLocalStreamUrl  createLocalStreamUrl cost : ${System.currentTimeMillis() - curr_ts}")
 
+            MetaPcdnClient.getInstance().updateRemoteStreamUrl(result, mCurrentUrl, mUrlExpireTimeSec)
             if (!TextUtils.isEmpty(result)) {
                 curr_ts = System.currentTimeMillis()
                 player1SampleCounter.SetStartTs(curr_ts)
@@ -221,8 +227,43 @@ class VideoPlayerActivity : AppCompatActivity() {
 
             }
 
-            override fun OnRequestToken(errorcode: Int) {
-                Log.d(TAG, "OnRequestToken:  errorcode = $errorcode")
+            override fun OnTokenWillExpire(
+                remote_stream_url: String,
+                output_local_url: String,
+                vid: String,
+                token: String
+            ) {
+                Log.d(TAG, "OnTokenWillExpire: url = $remote_stream_url ,output_local_url = $output_local_url, vid= $vid, token = $token")
+            }
+
+            override fun OnTokenExpired(
+                remote_stream_url: String,
+                output_local_url: String,
+                vid: String,
+                errorcode: Int
+            ) {
+                Log.d(TAG, "OnTokenExpired: url = $remote_stream_url ,output_local_url = $output_local_url, vid= $vid, errorcode = $errorcode")
+            }
+
+            override fun OnRemoteStreamUrlWillExpire(
+                remote_stream_url: String,
+                output_local_url: String,
+                vid: String
+            ) {
+                Log.d(TAG, "OnRemoteStreamUrlWillExpire: url = $remote_stream_url ,output_local_url = $output_local_url, vid= $vid")
+                if (mCurrentPlaying == output_local_url) {
+                    val new_remote_stream_url = mCurrentUrl + Math.abs(Random(System.currentTimeMillis()).nextInt()).toString();
+                    MetaPcdnClient.getInstance().updateRemoteStreamUrl(output_local_url, new_remote_stream_url, mUrlExpireTimeSec)
+                    Log.d(TAG, "update OnRemoteStreamUrlWillExpire: url = $new_remote_stream_url ,output_local_url = $output_local_url, vid= $vid")
+                }
+            }
+
+            override fun OnRemoteStreamUrlExpired(
+                remote_stream_url: String,
+                output_local_url: String,
+                vid: String
+            ) {
+                Log.e(TAG, "OnRemoteStreamUrlExpired: url = $remote_stream_url ,output_local_url = $output_local_url, vid= $vid")
             }
         })
 
