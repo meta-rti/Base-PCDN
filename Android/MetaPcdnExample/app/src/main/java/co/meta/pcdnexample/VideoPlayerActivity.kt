@@ -189,7 +189,7 @@ class VideoPlayerActivity : AppCompatActivity() {
             val result = MetaPcdnClient.getInstance().createLocalStreamUrl(mCurrentUrl,mVid,mToken)
             Log.d(TAG, "createLocalStreamUrl  createLocalStreamUrl cost : ${System.currentTimeMillis() - curr_ts}")
 
-            MetaPcdnClient.getInstance().updateRemoteStreamUrl(result, mCurrentUrl, mUrlExpireTimeSec)
+//            MetaPcdnClient.getInstance().updateRemoteStreamUrl(result, mCurrentUrl, mUrlExpireTimeSec)
             if (!TextUtils.isEmpty(result)) {
                 curr_ts = System.currentTimeMillis()
                 player1SampleCounter.SetStartTs(curr_ts)
@@ -251,11 +251,11 @@ class VideoPlayerActivity : AppCompatActivity() {
                 vid: String
             ) {
                 Log.d(TAG, "OnRemoteStreamUrlWillExpire: url = $remote_stream_url ,output_local_url = $output_local_url, vid= $vid")
-                if (mCurrentPlaying == output_local_url) {
-                    val new_remote_stream_url = mCurrentUrl + Math.abs(Random(System.currentTimeMillis()).nextInt()).toString();
-                    MetaPcdnClient.getInstance().updateRemoteStreamUrl(output_local_url, new_remote_stream_url, mUrlExpireTimeSec)
-                    Log.d(TAG, "update OnRemoteStreamUrlWillExpire: url = $new_remote_stream_url ,output_local_url = $output_local_url, vid= $vid")
-                }
+//                if (mCurrentPlaying == output_local_url) {
+//                    val new_remote_stream_url = mCurrentUrl + Math.abs(Random(System.currentTimeMillis()).nextInt()).toString();
+//                    MetaPcdnClient.getInstance().updateRemoteStreamUrl(output_local_url, new_remote_stream_url, mUrlExpireTimeSec)
+//                    Log.d(TAG, "update OnRemoteStreamUrlWillExpire: url = $new_remote_stream_url ,output_local_url = $output_local_url, vid= $vid")
+//                }
             }
 
             override fun OnRemoteStreamUrlExpired(
