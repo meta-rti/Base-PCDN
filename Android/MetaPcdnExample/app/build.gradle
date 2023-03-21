@@ -21,7 +21,7 @@ android {
     compileSdk 29
 
     defaultConfig {
-        applicationId "cc.ivtx.tutorials1v1vcall"
+        applicationId "co.wuji.pcdn.release.demo"
         minSdk 23
         targetSdk 29
         versionCode 2
