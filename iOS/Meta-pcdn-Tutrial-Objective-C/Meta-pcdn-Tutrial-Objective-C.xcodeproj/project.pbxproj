@@ -23,7 +23,6 @@
 		BED7725E29B4277400B89583 /* selectRadio@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BED7725729B4277400B89583 /* selectRadio@3x.png */; };
 		BED7725F29B4277400B89583 /* YsyRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = BED7725929B4277400B89583 /* YsyRadio.m */; };
 		BED7726029B4277400B89583 /* YsyRadioGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = BED7725C29B4277400B89583 /* YsyRadioGroup.m */; };
-		BED7726429B4378900B89583 /* TXPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BED7726329B4378900B89583 /* TXPlayer.m */; };
 		BED7726629B438FF00B89583 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED7726529B438FF00B89583 /* Accelerate.framework */; };
 		BED7726829B4390500B89583 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED7726729B4390500B89583 /* ReplayKit.framework */; };
 		BED7726A29B4391700B89583 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED7726929B4391700B89583 /* MobileCoreServices.framework */; };
@@ -74,7 +73,6 @@
 		BED7725B29B4277400B89583 /* YsyRadio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YsyRadio.h; sourceTree = "<group>"; };
 		BED7725C29B4277400B89583 /* YsyRadioGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YsyRadioGroup.m; sourceTree = "<group>"; };
 		BED7726129B429AA00B89583 /* IPlayerEable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPlayerEable.h; sourceTree = "<group>"; };
-		BED7726329B4378900B89583 /* TXPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TXPlayer.m; sourceTree = "<group>"; };
 		BED7726529B438FF00B89583 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		BED7726729B4390500B89583 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		BED7726929B4391700B89583 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -142,7 +140,6 @@
 				BEB7A9BA2991F79000EC215B /* IJKPlayer.m */,
 				BE0C613929B58F9D00B00847 /* MetaALiPlayer.h */,
 				BE0C613A29B58F9D00B00847 /* MetaALiPlayer.m */,
-				BED7726329B4378900B89583 /* TXPlayer.m */,
 				BE6F790E29910B0A0059AE1D /* AppDelegate.h */,
 				BE6F790F29910B0A0059AE1D /* AppDelegate.m */,
 				BE414F832991131F00BC9D6F /* Key.h */,
@@ -316,7 +313,6 @@
 				BE6F791029910B0A0059AE1D /* AppDelegate.m in Sources */,
 				BEB7A9BF2991FB2C00EC215B /* HomeVC.m in Sources */,
 				BEB7A9BC2991F79000EC215B /* IJKPlayer.m in Sources */,
-				BED7726429B4378900B89583 /* TXPlayer.m in Sources */,
 				BE6F792129910B0C0059AE1D /* main.m in Sources */,
 				BE0C613B29B58F9D00B00847 /* MetaALiPlayer.m in Sources */,
 			);
@@ -460,9 +456,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QA24T62XL3;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = QA24T62XL3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Meta-pcdn-Tutrial-Objective-C",
@@ -481,8 +479,10 @@
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../SDKs\"";
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.meta.pcdnVideo;
+				PRODUCT_BUNDLE_IDENTIFIER = co.wuji.pcdn.release.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = pcdn_release_dev;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -494,9 +494,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QA24T62XL3;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = QA24T62XL3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Meta-pcdn-Tutrial-Objective-C",
@@ -515,8 +517,10 @@
 				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../SDKs\"";
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.meta.pcdnVideo;
+				PRODUCT_BUNDLE_IDENTIFIER = co.wuji.pcdn.release.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = pcdn_release_dev;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

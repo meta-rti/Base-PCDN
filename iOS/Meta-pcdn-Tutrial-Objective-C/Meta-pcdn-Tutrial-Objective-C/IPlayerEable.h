@@ -8,6 +8,11 @@
 #import <Foundation/Foundation.h>
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol IPlayerEable;
+@protocol IPlayerDelegate <NSObject>
+- (void)requestRestPlayerURL:(id<IPlayerEable>)player;
+@end
+
 typedef NS_ENUM(NSInteger,PCDNPlayerType)  {
     PCDNPlayerTypePCDN,
     PCDNPlayerTypeCDN,
@@ -15,6 +20,7 @@ typedef NS_ENUM(NSInteger,PCDNPlayerType)  {
 
 @protocol IPlayerEable <NSObject>
 @property(nonatomic,assign)PCDNPlayerType playerType;
+@property(nonatomic,weak)id<IPlayerDelegate> delegate;
 @property(nonatomic,strong)NSString * playURL;
 @property(nonatomic,strong)NSString * rtcBoxIp;
 - (void)play:(NSString *)url;
@@ -28,7 +34,6 @@ typedef NS_ENUM(NSInteger,PCDNPlayerType)  {
 - (void)stopTimer;
 
 - (void)releaseHudView;
-
 
 @end
 NS_ASSUME_NONNULL_END

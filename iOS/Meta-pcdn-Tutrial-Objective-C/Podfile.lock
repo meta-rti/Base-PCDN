@@ -9,9 +9,6 @@ PODS:
     - MetaPCDNKit_iOS/MetaPCDNKit (= 0.1.4)
   - MetaPCDNKit_iOS/MetaPCDNKit (0.1.4)
   - SVProgressHUD (2.2.5)
-  - TXLiteAVSDK_Professional (11.0.14016):
-    - TXLiteAVSDK_Professional/Professional (= 11.0.14016)
-  - TXLiteAVSDK_Professional/Professional (11.0.14016)
 
 DEPENDENCIES:
   - AliPlayerSDK_iOS
@@ -20,7 +17,6 @@ DEPENDENCIES:
   - Masonry
   - MetaPCDNKit_iOS
   - SVProgressHUD
-  - TXLiteAVSDK_Professional
 
 SPEC REPOS:
   trunk:
@@ -30,7 +26,6 @@ SPEC REPOS:
     - Masonry
     - MetaPCDNKit_iOS
     - SVProgressHUD
-    - TXLiteAVSDK_Professional
 
 SPEC CHECKSUMS:
   AliPlayerSDK_iOS: 5d8abf1de4ed1fe5bc53ce36ebaab40902ad44b8
@@ -39,8 +34,7 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MetaPCDNKit_iOS: 61f50f614d201991b6c3d8b007bd58a01deb2401
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  TXLiteAVSDK_Professional: 20495fbea0b1efa4b66c1073460efc5f189e59db
 
-PODFILE CHECKSUM: f7f8033ae4b9f51788b5fb3f3013200485105aac
+PODFILE CHECKSUM: 7d8a97314ff6770dc3ab374c707a3591f75cdebc
 
 COCOAPODS: 1.11.3

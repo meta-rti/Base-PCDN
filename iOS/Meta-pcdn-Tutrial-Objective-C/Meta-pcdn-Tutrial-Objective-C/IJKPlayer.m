@@ -203,4 +203,6 @@
     self.statisticsLabel.text = str;
 }
 
+@synthesize delegate;
+
 @end

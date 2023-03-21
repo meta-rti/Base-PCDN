@@ -268,7 +268,9 @@
 
 - (void)onError:(AliPlayer *)player errorModel:(AVPErrorModel *)errorModel {
     NSLog(@"player url = %@ error code  = %ld  error msg = %@", self.playURL, errorModel.code, errorModel.message);
-    [self play:self.playURL];
+    if(self.delegate &&[self.delegate respondsToSelector:@selector(requestRestPlayerURL:)]) {
+        [self.delegate requestRestPlayerURL:self];
+    }
 }
 
 - (void)onEventReportParams:(NSDictionary<NSString *, NSString *> *)params {
@@ -280,5 +282,7 @@
 
     NSLog(@"recive sei type %d  data = %@", type, sei);
 }
+
+@synthesize delegate;
 
 @end

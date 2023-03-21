@@ -9,7 +9,6 @@
 
 typedef NS_ENUM(NSInteger,PlayerType){
     PlayerTypeIJK,
-    PlayerTypeTX,
     PlayerTypeALI,
 };
 NS_ASSUME_NONNULL_BEGIN

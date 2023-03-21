@@ -11,12 +11,11 @@
 #import "Masonry.h"
 #import "PCDNClientVC.h"
 #import "IJKPlayer.h"
-#import "TXPlayer.h"
 #import "SVProgressHUD.h"
 #import "MetaALiPlayer.h"
 
 
-@interface PCDNClientVC ()<MetaPCDNClientDelegate>
+@interface PCDNClientVC ()<MetaPCDNClientDelegate,IPlayerDelegate>
 @property (nonatomic, strong) UIView<IPlayerEable> *playerView1;
 @property (nonatomic, strong) UIView<IPlayerEable> *playerView2;
 
@@ -83,6 +82,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    self.playerView1.delegate = nil;
+    self.playerView2.delegate = nil;
 
     [self.playerView1 stopTimer];
     [self.playerView1 releaseHudView];
@@ -117,11 +118,8 @@
         self.playerView1 = [[MetaALiPlayer alloc] initWithFrame:CGRectZero];
         self.playerView1.playerType = PCDNPlayerTypePCDN;
         self.playerView2 = [[MetaALiPlayer alloc] initWithFrame:CGRectZero];
-    } else {
-        self.playerView1 = [[TXPlayer alloc] initWithFrame:CGRectZero];
-        self.playerView1.playerType = PCDNPlayerTypePCDN;
-        self.playerView2 = [[TXPlayer alloc] initWithFrame:CGRectZero];
     }
+    self.playerView1.delegate = self;
     
     [self.view addSubview:self.playerView1];
 
@@ -266,7 +264,7 @@
     // destory old local proxy url
     [self.client destoryLocalStream:self.locoalUrl];
     //create new  local proxy url
-    NSString *proxyUrl = [self.client createLocalStream:urlStr vid:VID token:@""];
+    NSString *proxyUrl = [self.client createLocalStream:urlStr vid:urlStr token:self.remoteUrl];
 
     //player local url
     [self.playerView1 play:proxyUrl];
@@ -322,14 +320,18 @@
 - (void)client:(nonnull MetaPCDNClient *)client remoteUrl:(nonnull NSString *)remoteURL vid:(nonnull NSString *)vid sourceFromType:(MetaDataSourceType)sourceType {
 }
 
-/*
- #pragma mark - Navigation
-
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-   }
- */
-
+#pragma mark- IPlayerDelegate
+- (void)requestRestPlayerURL:(id<IPlayerEable>)player {
+    if(self.playerView1 == player) {
+        // destory old local proxy url
+        [self.client destoryLocalStream:self.locoalUrl];
+        //create new  local proxy url
+        NSString *proxyUrl = [self.client createLocalStream:self.remoteUrl vid:self.remoteUrl token:@""];
+        //player local url
+        [self.playerView1 play:proxyUrl];
+        
+    }else {
+        [player play:self.remoteUrl];
+    }
+}
 @end
