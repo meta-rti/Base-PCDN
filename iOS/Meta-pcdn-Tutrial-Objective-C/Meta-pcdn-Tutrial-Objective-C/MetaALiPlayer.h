@@ -12,4 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+NSString * convertIphoeModeName(NSString *deviceModel);
+NSString * GetDeviceInfo(void);
 NS_ASSUME_NONNULL_END

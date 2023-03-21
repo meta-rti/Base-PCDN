@@ -66,7 +66,7 @@
         make.right.mas_equalTo(-30);
         make.height.mas_equalTo(40);
     }];
-    
+#if 1
     YsyRadio * ijkPlayer = [YsyRadio creatRadioWithName:@"ijkPlayer" val:@"1" selected:YES];
     YsyRadio * aliPlayer = [YsyRadio creatRadioWithName:@"阿里播放器" val:@"2" selected:NO];
     [YsyRadioGroup onView:self.view select:^(YsyRadio *radio) {
@@ -80,7 +80,7 @@
     
     ijkPlayer.titleLabel.font = [UIFont systemFontOfSize:14];
     aliPlayer.titleLabel.font = [UIFont systemFontOfSize:14];
-    
+
     [ijkPlayer mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.dropdownMenu.mas_left).offset(0);
         make.top.equalTo(self.dropdownMenu.mas_bottom).offset(20);
@@ -91,6 +91,9 @@
         make.top.equalTo(self.dropdownMenu.mas_bottom).offset(20);
         make.height.mas_equalTo(40);
     }];
+#else
+    self.type = PlayerTypeALI;
+#endif
 }
 - (IBAction)enterRoom:(id)sender {
     if(self.selectedURL.length <= 0 ) {
