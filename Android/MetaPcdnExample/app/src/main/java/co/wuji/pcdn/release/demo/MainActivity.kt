@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import co.wuji.pcdn.release.demo.databinding.ActivityMainBinding
@@ -73,6 +74,7 @@ class MainActivity : AppCompatActivity() {
                 ) {
 
                     mUrl = mUrlArray[position]
+                    mMainBinding.edtUrl.setText(mUrl)
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -82,11 +84,17 @@ class MainActivity : AppCompatActivity() {
 
 
         mMainBinding.btnPlay.setOnClickListener {
+            mUrl = mMainBinding.edtUrl.text.toString()
             if (CommonUtils.fastClick(3000)) {
                 return@setOnClickListener
             }
 
             if (TextUtils.isEmpty(mUrl)) {
+                showToast("invalid url.")
+                return@setOnClickListener
+            }
+            if (!mUrl.startsWith("rtmp")){
+                showToast("invalid url.")
                 return@setOnClickListener
             }
 
@@ -98,6 +106,10 @@ class MainActivity : AppCompatActivity() {
                     putExtra(SPKEYURL, mUrl)
                 })
         }
+    }
+
+    private fun showToast(msg : String){
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show()
     }
 
 }
