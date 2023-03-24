@@ -21,5 +21,7 @@
 		<string>audio</string>
 		<string>voip</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>video chat</string>
 </dict>
 </plist>

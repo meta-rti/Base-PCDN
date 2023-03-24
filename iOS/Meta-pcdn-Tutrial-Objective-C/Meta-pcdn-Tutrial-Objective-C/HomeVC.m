@@ -13,12 +13,14 @@
 #import "SVProgressHUD.h"
 #import "YsyRadio.h"
 #import "YsyRadioGroup.h"
-@interface HomeVC ()<LMJDropdownMenuDataSource,LMJDropdownMenuDelegate>
+@interface HomeVC ()<LMJDropdownMenuDataSource,LMJDropdownMenuDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *urlSelectArea;
 @property(nonatomic,strong)NSArray * dataSource;
 @property(nonatomic,strong)LMJDropdownMenu * dropdownMenu;
 @property(nonatomic,strong)NSString * selectedURL;
 @property(nonatomic,assign)PlayerType type;
+
+@property(nonatomic,strong)UITextField * urlInputField;
 @end
 
 @implementation HomeVC
@@ -26,7 +28,7 @@
 - (NSArray *)dataSource {
     if(_dataSource == nil) {
         _dataSource = @[
-            @"rtmp://221.13.203.66:31937/live/IMG_30fps_bf1_1M_baseline_360p"
+            @"rtmp://221.13.203.66:31937/live/IMG_30fps_bf1_1M_baseline_360p",
         ];
     }
     return _dataSource;
@@ -41,7 +43,7 @@
     // Do any additional setup after loading the view.
     
     self.type = PlayerTypeIJK;
-    
+    self.selectedURL = self.dataSource.firstObject;
     self.dropdownMenu = [[LMJDropdownMenu alloc] initWithFrame:CGRectZero];
     [self.urlSelectArea addSubview:self.dropdownMenu];
     self.dropdownMenu.delegate = self;
@@ -49,7 +51,7 @@
     self.dropdownMenu.layer.borderColor  = [UIColor colorWithRed:64.0/255 green:151.0/255 blue:255.0/255 alpha:1].CGColor;
     self.dropdownMenu.layer.borderWidth  = 1;
     self.dropdownMenu.layer.cornerRadius = 3;
-    self.dropdownMenu.title           =  @"选择视频地址";
+    self.dropdownMenu.title           =  self.dataSource.firstObject;
     self.dropdownMenu.titleBgColor    = [UIColor whiteColor];
     self.dropdownMenu.titleFont       = [UIFont boldSystemFontOfSize:15];
     self.dropdownMenu.titleColor      = [UIColor colorWithRed:64.0/255 green:151.0/255 blue:255.0/255 alpha:1];
@@ -66,6 +68,26 @@
         make.right.mas_equalTo(-30);
         make.height.mas_equalTo(40);
     }];
+    
+    self.urlInputField = [[UITextField alloc] initWithFrame:CGRectZero];
+    [self.urlSelectArea addSubview:self.urlInputField];
+
+    self.urlInputField.text = self.dataSource.firstObject;
+    self.urlInputField.delegate = self;
+    self.urlInputField.layer.borderColor  = [UIColor colorWithRed:64.0/255 green:151.0/255 blue:255.0/255 alpha:1].CGColor;
+    self.urlInputField.layer.borderWidth  = 1;
+    self.urlInputField.layer.cornerRadius = 3;
+    self.urlInputField.backgroundColor =  self.dropdownMenu.titleBgColor;
+    self.urlInputField.textColor = [UIColor colorWithRed:64.0/255 green:151.0/255 blue:255.0/255 alpha:1];
+    self.urlInputField.font = [UIFont boldSystemFontOfSize:15];
+    
+    [self.urlInputField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(30);
+        make.right.mas_equalTo(-60);
+        make.top.mas_equalTo(0);
+        make.height.mas_equalTo(40);
+    }];
+    
 #if 1
     YsyRadio * ijkPlayer = [YsyRadio creatRadioWithName:@"ijkPlayer" val:@"1" selected:YES];
     YsyRadio * aliPlayer = [YsyRadio creatRadioWithName:@"阿里播放器" val:@"2" selected:NO];
@@ -101,6 +123,10 @@
         [SVProgressHUD dismissWithDelay:2];
         return;
     }
+    if([self.selectedURL hasPrefix:@"rtmp://"] || [self.selectedURL hasPrefix:@"rtsp://"]) {
+        [SVProgressHUD showInfoWithStatus:@"输入的地址不合法，请检查后再输入！！！"];
+        [SVProgressHUD dismissWithDelay:2];
+    }
     PCDNClientVC * clientVC = [[PCDNClientVC alloc] init];
     clientVC.playerURL = self.selectedURL;
     clientVC.type = self.type;
@@ -118,8 +144,22 @@
 }
 - (void)dropdownMenu:(LMJDropdownMenu *)menu didSelectOptionAtIndex:(NSUInteger)index optionTitle:(NSString *)title {
     self.selectedURL  = self.dataSource[index];
-    
+    self.urlInputField.text = self.selectedURL;
 }
+
+#pragma mark- UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    self.selectedURL = textField.text;
+    [self.view endEditing:YES];
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    self.selectedURL = textField.text;
+    return  YES;
+}
+
+
 
 /*
 #pragma mark - Navigation

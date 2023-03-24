@@ -248,7 +248,6 @@
         [SVProgressHUD dismissWithDelay:2];
         return;
     }
-
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [paths objectAtIndex:0];
     NSURL *url = [NSURL URLWithString:urlStr];
