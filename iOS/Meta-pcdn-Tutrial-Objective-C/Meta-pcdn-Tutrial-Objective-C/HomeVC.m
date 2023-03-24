@@ -123,9 +123,10 @@
         [SVProgressHUD dismissWithDelay:2];
         return;
     }
-    if([self.selectedURL hasPrefix:@"rtmp://"] || [self.selectedURL hasPrefix:@"rtsp://"]) {
+    if(![self.selectedURL hasPrefix:@"rtmp://"] && ![self.selectedURL hasPrefix:@"rtsp://"]) {
         [SVProgressHUD showInfoWithStatus:@"输入的地址不合法，请检查后再输入！！！"];
         [SVProgressHUD dismissWithDelay:2];
+        return;
     }
     PCDNClientVC * clientVC = [[PCDNClientVC alloc] init];
     clientVC.playerURL = self.selectedURL;
