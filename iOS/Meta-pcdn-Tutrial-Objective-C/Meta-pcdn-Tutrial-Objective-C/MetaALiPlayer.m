@@ -153,6 +153,7 @@
     self.reciverFirstFrameTime = -1.0f;
     AVPUrlSource *urlSource = [[AVPUrlSource  alloc] urlWithString:url];
     [self.player setUrlSource:urlSource];
+    [self.player setTraceID:trackID];
     self.player.autoPlay = YES;
     [self.player prepare];
     [self.player start];

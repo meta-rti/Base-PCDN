@@ -14,6 +14,17 @@
 		</dict>
 		<dict>
 			<key>FooterText</key>
+			<string>Alibaba-INC copyright
+</string>
+			<key>License</key>
+			<string>MIT</string>
+			<key>Title</key>
+			<string>AliPlayerSDK_iOS</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
 			<string>MIT License
 
 Copyright (c) 2013-2017 Iftekhar Qurashi
@@ -97,6 +108,17 @@ THE SOFTWARE.</string>
 			<string>MIT</string>
 			<key>Title</key>
 			<string>Masonry</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
+			<string>copyright 2019 wuji Ltd. All rights reserved.
+</string>
+			<key>License</key>
+			<string>Proprietary</string>
+			<key>Title</key>
+			<string>MetaPCDNKit_iOS</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

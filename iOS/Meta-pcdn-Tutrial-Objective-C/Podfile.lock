@@ -5,9 +5,9 @@ PODS:
   - IQKeyboardManager (6.5.11)
   - LMJDropdownMenu (3.0.4)
   - Masonry (1.1.0)
-  - MetaPCDNKit_iOS (0.1.6):
-    - MetaPCDNKit_iOS/MetaPCDNKit (= 0.1.6)
-  - MetaPCDNKit_iOS/MetaPCDNKit (0.1.6)
+  - MetaPCDNKit_iOS (0.1.7):
+    - MetaPCDNKit_iOS/MetaPCDNKit (= 0.1.7)
+  - MetaPCDNKit_iOS/MetaPCDNKit (0.1.7)
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
@@ -32,7 +32,7 @@ SPEC CHECKSUMS:
   IQKeyboardManager: ef43ce1ba1e5aaf4adf222c0a46f39761f246879
   LMJDropdownMenu: 50c74e9d50a480c290fec47eb575826861d0823b
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  MetaPCDNKit_iOS: 631ab27213517e37ff5e0648fd7707db6366fb0f
+  MetaPCDNKit_iOS: 12c1f160403e05a2c4f3f40fe0478febb2727401
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
 PODFILE CHECKSUM: 7d8a97314ff6770dc3ab374c707a3591f75cdebc

@@ -176,16 +176,24 @@ code_sign_if_enabled() {
 }
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${PODS_ROOT}/AliPlayerSDK_iOS/AliyunPlayer.framework"
+  install_framework "${PODS_ROOT}/AliPlayerSDK_iOS/alivcffmpeg.framework"
+  install_framework "${PODS_ROOT}/AliPlayerSDK_iOS/AliyunMediaDownloader.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/LMJDropdownMenu/LMJDropdownMenu.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/MetaPCDNKit_iOS/MetaPCDNKit/MetaPCDNKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${PODS_ROOT}/AliPlayerSDK_iOS/AliyunPlayer.framework"
+  install_framework "${PODS_ROOT}/AliPlayerSDK_iOS/alivcffmpeg.framework"
+  install_framework "${PODS_ROOT}/AliPlayerSDK_iOS/AliyunMediaDownloader.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/LMJDropdownMenu/LMJDropdownMenu.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/MetaPCDNKit_iOS/MetaPCDNKit/MetaPCDNKit.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait
