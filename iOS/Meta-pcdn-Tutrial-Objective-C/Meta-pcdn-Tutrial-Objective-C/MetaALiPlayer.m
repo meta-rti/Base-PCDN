@@ -85,7 +85,7 @@
         self.statisticsLabel.backgroundColor = [UIColor clearColor];
         
         self.formatter = [[NSDateFormatter alloc] init];
-        self.formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+        self.formatter.dateFormat = @"yyyy-MM-dd_HH:mm:ss";
     }
 
     return self;
