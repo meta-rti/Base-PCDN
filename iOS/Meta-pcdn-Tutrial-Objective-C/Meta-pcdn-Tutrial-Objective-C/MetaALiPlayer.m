@@ -99,6 +99,7 @@
         self.player.delegate = nil;
         [self.player pause];
         [self.player stop];
+        self.player = nil;
     }
     NSString * deviceInfo = GetDeviceInfo();
     NSString * trackID = @"";
@@ -107,7 +108,6 @@
         self.player.enableHardwareDecoder = NO;
         self.player.playerView = self.playerView;
         self.player.loop = YES;
-
         if (self.playerType == PCDNPlayerTypePCDN) {
             //先获取配置
             AVPConfig *config = [self.player getConfig];
@@ -145,7 +145,7 @@
             trackID = [NSString stringWithFormat:@"CDN_%@_%@",deviceInfo,timeStr];
         }
     }
-
+    NSLog(@"traceId = %@",trackID);
     self.playURL = url;
     self.player.delegate = self;
     self.player.renderingDelegate = self;
