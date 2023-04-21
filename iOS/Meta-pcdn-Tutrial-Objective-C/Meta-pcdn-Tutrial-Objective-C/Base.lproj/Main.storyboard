@@ -76,6 +76,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="aR3-TY-uu7"/>
                     <connections>
+                        <outlet property="playBtnTopConstraint" destination="A3L-Xy-7Uc" id="N8v-76-8KP"/>
                         <outlet property="urlSelectArea" destination="kHP-0a-Dw3" id="QBC-w8-LsS"/>
                     </connections>
                 </viewController>

@@ -6,16 +6,16 @@
 //
 
 #import <MetaPCDNKit/MetaPCDNKit.h>
+#import "IJKPlayer.h"
 #import "Key.h"
 #import "LMJDropdownMenu.h"
 #import "Masonry.h"
-#import "PCDNClientVC.h"
-#import "IJKPlayer.h"
-#import "SVProgressHUD.h"
 #import "MetaALiPlayer.h"
+#import "PCDNClientVC.h"
+#import "SVProgressHUD.h"
 
 
-@interface PCDNClientVC ()<MetaPCDNClientDelegate,IPlayerDelegate>
+@interface PCDNClientVC ()<MetaPCDNClientDelegate, IPlayerDelegate>
 @property (nonatomic, strong) UIView<IPlayerEable> *playerView1;
 @property (nonatomic, strong) UIView<IPlayerEable> *playerView2;
 
@@ -24,6 +24,7 @@
 @property (nonatomic, strong) NSString *remoteUrl;
 @property (nonatomic, strong) NSString *locoalUrl;
 @property (nonatomic, assign) BOOL sync_play_source;  //同步播放cdn 视频流
+@property (nonatomic, assign) BOOL sync_play_cdn_source;  //同步播放cdn 视频流
 
 @property (nonatomic, strong) MetaPCDNClient *client;
 
@@ -63,11 +64,13 @@
     self.navigationController.navigationBarHidden = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationDidEnterBackground:)
-                                                 name:UIApplicationDidEnterBackgroundNotification object:nil];
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationDidEnterActiveground:)
-                                                 name:UIApplicationWillEnterForegroundNotification object:nil];
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
 }
 
 - (void)applicationDidEnterBackground:(NSNotification *)notif {
@@ -94,10 +97,9 @@
     [self.client destoryLocalStream:self.locoalUrl];
 
     self.view.backgroundColor = [UIColor whiteColor];
-    
+
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
-    
 }
 
 - (void)viewDidLoad {
@@ -109,8 +111,10 @@
 
     self.view.backgroundColor = [UIColor whiteColor];
 
+    self.sync_play_source = YES;
+    self.sync_play_cdn_source = YES;
 
-    if(self.type == PlayerTypeIJK) {
+    if (self.type == PlayerTypeIJK) {
         self.playerView1 = [[IJKPlayer alloc] initWithFrame:CGRectZero];
         self.playerView1.playerType = PCDNPlayerTypePCDN;
         self.playerView2 = [[IJKPlayer alloc] initWithFrame:CGRectZero];
@@ -119,8 +123,9 @@
         self.playerView1.playerType = PCDNPlayerTypePCDN;
         self.playerView2 = [[MetaALiPlayer alloc] initWithFrame:CGRectZero];
     }
+
     self.playerView1.delegate = self;
-    
+
     [self.view addSubview:self.playerView1];
 
     CGFloat statusHeight = [self statusBarHeight];
@@ -169,7 +174,7 @@
         make.height.mas_equalTo(40);
     }];
 
-    
+
     [self.view addSubview:self.playerView2];
 
     [self.playerView2 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -195,6 +200,7 @@
 
     label.font = [UIFont systemFontOfSize:14];
     label.text = @"同步播放原始视频";
+    label.textAlignment = NSTextAlignmentRight;
     label.textColor = [UIColor colorWithRed:64.0 / 255 green:151.0 / 255 blue:255.0 / 255 alpha:1];
     label.backgroundColor = [UIColor clearColor];
 
@@ -214,20 +220,43 @@
         make.width.mas_equalTo(40);
         make.height.mas_equalTo(30);
     }];
-    self.sync_play_source = YES;
     [switchView setOn:self.sync_play_source];
     [switchView addTarget:self action:@selector(switchLogValueChanged:) forControlEvents:UIControlEventValueChanged];
+
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:label2];
+    label2.font = [UIFont systemFontOfSize:14];
+    label2.text = @"同步播放pcdn视频";
+    label2.textAlignment = NSTextAlignmentRight;
+    label2.textColor = [UIColor colorWithRed:64.0 / 255 green:151.0 / 255 blue:255.0 / 255 alpha:1];
+    label2.backgroundColor = [UIColor clearColor];
+
+    [label2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-80);
+        make.top.mas_equalTo(label.mas_bottom).offset(20);
+        make.width.mas_equalTo(140);
+        make.height.mas_equalTo(30);
+    }];
+
+    UISwitch *switchView2 =  [[UISwitch alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:switchView2];
+    [switchView2 setOn:false];
+    [switchView2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(label2.mas_centerY);
+        make.left.equalTo(label2.mas_right).offset(5);
+        make.width.mas_equalTo(40);
+        make.height.mas_equalTo(30);
+    }];
+    [switchView2 setOn:self.sync_play_cdn_source];
+    [switchView2 addTarget:self action:@selector(switchLogValueChanged2:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)switchLogValueChanged:(UISwitch *)sender {
     self.sync_play_source = sender.isOn;
+}
 
-    if (self.sync_play_source && self.remoteUrl.length > 0) {
-        [self.playerView2 play:self.remoteUrl];
-        [self.playerView2 updateDataSourceTitle:@"CDN"];
-    } else {
-        [self.playerView2 stop];
-    }
+- (void)switchLogValueChanged2:(UISwitch *)sender {
+    self.sync_play_cdn_source = sender.isOn;
 }
 
 - (void)playerBtnClickedHandler:(UIButton *)sender {
@@ -238,7 +267,6 @@
         });
         return;
     }
-
     [self playRemoteUrl:self.urlInputField.text];
 }
 
@@ -258,22 +286,28 @@
 
     [self.client setLogFilter:MetaPCDNLogFilterInfo];
     [self.client setLogFile:logPath fileSize:10 * 1024 * 1024];
-   
+    if( self.locoalUrl.length > 0) {
+        // destory old local proxy url
+        [self.client destoryLocalStream:self.locoalUrl];
+    }
+    if (self.sync_play_cdn_source) {
 
-    // destory old local proxy url
-    [self.client destoryLocalStream:self.locoalUrl];
-    //create new  local proxy url
-    NSString *proxyUrl = [self.client createLocalStream:urlStr vid:urlStr token:self.remoteUrl];
-
-    //player local url
-    [self.playerView1 play:proxyUrl];
+        //create new  local proxy url
+        NSString *proxyUrl = [self.client createLocalStream:urlStr vid:self.vid token:self.remoteUrl];
+        //player local url
+        [self.playerView1 play:proxyUrl];
+        self.locoalUrl = proxyUrl;
+    } else {
+        [self.playerView1 stop];
+    }
 
     if (self.sync_play_source) {
         [self.playerView2 play:urlStr];
         [self.playerView2 updateDataSourceTitle:@"CDN"];
+    } else {
+        [self.playerView2 stop];
     }
 
-    self.locoalUrl = proxyUrl;
     self.remoteUrl = urlStr;
 }
 
@@ -321,16 +355,16 @@
 
 #pragma mark- IPlayerDelegate
 - (void)requestRestPlayerURL:(id<IPlayerEable>)player {
-    if(self.playerView1 == player) {
+    if (self.playerView1 == player) {
         // destory old local proxy url
         [self.client destoryLocalStream:self.locoalUrl];
         //create new  local proxy url
-        NSString *proxyUrl = [self.client createLocalStream:self.remoteUrl vid:self.remoteUrl token:@""];
+        NSString *proxyUrl = [self.client createLocalStream:self.remoteUrl vid:self.vid token:@""];
         //player local url
         [self.playerView1 play:proxyUrl];
-        
-    }else {
+    } else {
         [player play:self.remoteUrl];
     }
 }
+
 @end

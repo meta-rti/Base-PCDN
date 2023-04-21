@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PCDNClientVC : UIViewController
 @property(nonatomic,strong)NSString * playerURL;
 @property(nonatomic,assign)PlayerType type;
+@property(nonatomic,strong)NSString * vid;
 @end
 
 NS_ASSUME_NONNULL_END

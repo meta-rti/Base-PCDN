@@ -19,8 +19,9 @@
 @property(nonatomic,strong)LMJDropdownMenu * dropdownMenu;
 @property(nonatomic,strong)NSString * selectedURL;
 @property(nonatomic,assign)PlayerType type;
-
 @property(nonatomic,strong)UITextField * urlInputField;
+@property(nonatomic,strong)UITextField * vidInputField;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *playBtnTopConstraint;
 @end
 
 @implementation HomeVC
@@ -87,8 +88,33 @@
         make.top.mas_equalTo(0);
         make.height.mas_equalTo(40);
     }];
+#if 0
+    self.playBtnTopConstraint.constant = 70;
+    UILabel * vidLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    vidLabel.text = @"vid:";
+    [self.view addSubview:vidLabel];
     
-#if 1
+    self.vidInputField = [[UITextField alloc] initWithFrame:CGRectZero];
+    self.vidInputField.text = self.selectedURL;
+    self.vidInputField.delegate = self;
+    self.vidInputField.layer.borderColor  = [UIColor colorWithRed:64.0/255 green:151.0/255 blue:255.0/255 alpha:1].CGColor;
+    self.vidInputField.layer.borderWidth  = 1;
+    self.vidInputField.layer.cornerRadius = 3;
+    [self.view addSubview:self.vidInputField];
+    [vidLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(30);
+        make.top.equalTo(self.dropdownMenu.mas_bottom).offset(20);
+        make.width.mas_equalTo(30);
+        make.height.mas_equalTo(40);
+    }];
+    
+    [self.vidInputField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(vidLabel.mas_right).offset(10);
+        make.top.equalTo(self.dropdownMenu.mas_bottom).offset(20);
+        make.right.mas_equalTo(-30);
+        make.height.mas_equalTo(40);
+    }];
+    
     YsyRadio * ijkPlayer = [YsyRadio creatRadioWithName:@"ijkPlayer" val:@"1" selected:YES];
     YsyRadio * aliPlayer = [YsyRadio creatRadioWithName:@"阿里播放器" val:@"2" selected:NO];
     [YsyRadioGroup onView:self.view select:^(YsyRadio *radio) {
@@ -105,12 +131,12 @@
 
     [ijkPlayer mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.dropdownMenu.mas_left).offset(0);
-        make.top.equalTo(self.dropdownMenu.mas_bottom).offset(20);
+        make.top.equalTo(self.vidInputField.mas_bottom).offset(20);
         make.height.mas_equalTo(40);
     }];
     [aliPlayer mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ijkPlayer.mas_right).offset(10);
-        make.top.equalTo(self.dropdownMenu.mas_bottom).offset(20);
+        make.top.equalTo(self.vidInputField.mas_bottom).offset(20);
         make.height.mas_equalTo(40);
     }];
 #else
@@ -131,6 +157,10 @@
     PCDNClientVC * clientVC = [[PCDNClientVC alloc] init];
     clientVC.playerURL = self.selectedURL;
     clientVC.type = self.type;
+    clientVC.vid = self.selectedURL;
+    if(self.vidInputField) {
+      clientVC.vid = self.vidInputField.text;
+    }
     [self.navigationController pushViewController:clientVC animated:YES];
 }
 
@@ -150,13 +180,17 @@
 
 #pragma mark- UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    self.selectedURL = textField.text;
+    if(self.urlInputField == textField) {
+      self.selectedURL = textField.text;
+    }
     [self.view endEditing:YES];
     return YES;
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-    self.selectedURL = textField.text;
+    if(self.urlInputField == textField) {
+        self.selectedURL = textField.text;
+    }
     return  YES;
 }
 
