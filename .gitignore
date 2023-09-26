@@ -1,3 +1,6 @@
 *.xcscheme
 Pods
 *.xcuserstate
+Android/MetaPcdnExample/.gradle
+Android/MetaPcdnExample/.idea
+Android/MetaPcdnExample/app/build

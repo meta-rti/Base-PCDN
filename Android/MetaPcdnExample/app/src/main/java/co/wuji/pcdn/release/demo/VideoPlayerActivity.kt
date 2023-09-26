@@ -143,7 +143,7 @@ class VideoPlayerActivity : AppCompatActivity() {
         val format = SimpleDateFormat("yyyy-MM-dd_HH_mm_ss")
         val logName = "${format.format(Date(System.currentTimeMillis()))}-pcdn.log"
         val logfile = "${BaseApplication.INSTANCE.externalCacheDir?.absolutePath}/log/$logName"
-        MetaPcdnClient.getInstance().setLogFilter(MetaPCDNLogFilter.LOG_FILTER_DEBUG)
+        MetaPcdnClient.getInstance().setLogFilter(MetaPCDNLogFilter.LOG_FILTER_INFO)
         MetaPcdnClient.getInstance().setLogFile(logfile,600*1024)
     }
 
@@ -151,7 +151,7 @@ class VideoPlayerActivity : AppCompatActivity() {
     private fun initView() {
         mCurrentUrl = intent.getStringExtra("video_url")
         if (TextUtils.isEmpty(mCurrentUrl)) {
-            mCurrentUrl = "rtmp://221.13.203.66:31937/live/IMG_30fps_bf1_1M_baseline_360p"
+            mCurrentUrl = "rtmp://221.13.203.66:31935/live/test_1080p_3m_baseline_25fps_150min"
         }
         mCurrentUrl2 = mCurrentUrl
 
@@ -177,7 +177,7 @@ class VideoPlayerActivity : AppCompatActivity() {
             var code = -22
 
             code = MetaPcdnClient.getInstance().setParameters("{\"server_url_type\":$mServerType}")
-            code = MetaPcdnClient.getInstance().setParameters("{\"enable_time_stretch\":true}")
+            code = MetaPcdnClient.getInstance().setParameters("{\"enable_time_stretch\":false}")
             var curr_ts = System.currentTimeMillis()
             if (!TextUtils.isEmpty(mCurrentPlaying)){
                 mAliyunPlayerBinding.aliPlayer.stop()
@@ -320,19 +320,20 @@ class VideoPlayerActivity : AppCompatActivity() {
             mNetworkTimeout = 60*1000
 
             //最大延迟。注意：直播有效。当延时比较大时，播放器sdk内部会追帧等，保证播放器的延时在这个范围内。
-            mMaxDelayTime = 5000;
+            mMaxDelayTime = 3000;
 // 最大缓冲区时长。单位ms。播放器每次最多加载这么长时间的缓冲数据。
 
             mMaxBufferDuration = 50000;
 //高缓冲时长。单位ms。当网络不好导致加载数据时，如果加载的缓冲时长到达这个值，结束加载状态。
-            mHighBufferDuration = 500;
+            mHighBufferDuration = 3000;
 
 // 起播缓冲区时长。单位ms。这个时间设置越短，起播越快。也可能会导致播放之后很快就会进入加载状态。
-            mStartBufferDuration = 10;
+            mStartBufferDuration = 500;
 
 //往前缓存的最大时长。单位ms。默认为0。
             mMaxBackwardBufferDurationMs = 0;
             mEnableSEI = true
+            mClearFrameWhenStop =false
         }
 
 
@@ -342,7 +343,7 @@ class VideoPlayerActivity : AppCompatActivity() {
             mNetworkTimeout = 60*1000
 
             //最大延迟。注意：直播有效。当延时比较大时，播放器sdk内部会追帧等，保证播放器的延时在这个范围内。
-            mMaxDelayTime = 5000;
+            mMaxDelayTime = 3000;
 // 最大缓冲区时长。单位ms。播放器每次最多加载这么长时间的缓冲数据。
 
             mMaxBufferDuration = 50000;
@@ -355,6 +356,7 @@ class VideoPlayerActivity : AppCompatActivity() {
 //往前缓存的最大时长。单位ms。默认为0。
             mMaxBackwardBufferDurationMs = 0;
             mEnableSEI = true
+            mClearFrameWhenStop =false
         }
 
         mAliyunPlayerBinding.aliPlayer.run {
