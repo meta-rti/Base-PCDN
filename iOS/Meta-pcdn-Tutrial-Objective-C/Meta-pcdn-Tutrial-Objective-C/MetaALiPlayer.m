@@ -112,15 +112,17 @@
             //先获取配置
             AVPConfig *config = [self.player getConfig];
             //最大延迟。注意：直播有效。当延时比较大时，播放器SDK内部会追帧等，保证播放器的延时在这个范围内。
-            config.maxDelayTime = 5000;
+            config.maxDelayTime = 3000;
             // 最大缓冲区时长。单位ms。播放器每次最多加载这么长时间的缓冲数据。
             config.maxBufferDuration = 50000;
             //高缓冲时长。单位ms。当网络不好导致加载数据时，如果加载的缓冲时长到达这个值，结束加载状态。
-            config.highBufferDuration = 500;
+            config.highBufferDuration = 3000;
             // 起播缓冲区时长。单位ms。这个时间设置越短，起播越快。也可能会导致播放之后很快就会进入加载状态。
-            config.startBufferDuration = 10;
+            config.startBufferDuration = 500;
 
             config.mMAXBackwardDuration = 0;
+            config.enableSEI = false;
+            config.clearShowWhenStop = false;
             [self.player setConfig:config];
             NSString * timeStr = [self.formatter stringFromDate:[NSDate date]];
             trackID = [NSString stringWithFormat:@"RTC_%@_%@",deviceInfo,timeStr];
@@ -129,15 +131,17 @@
             //先获取配置
             AVPConfig *config = [self.player getConfig];
             //最大延迟。注意：直播有效。当延时比较大时，播放器SDK内部会追帧等，保证播放器的延时在这个范围内。
-            config.maxDelayTime = 5000;
+            config.maxDelayTime = 3000;
             // 最大缓冲区时长。单位ms。播放器每次最多加载这么长时间的缓冲数据。
             config.maxBufferDuration = 50000;
             //高缓冲时长。单位ms。当网络不好导致加载数据时，如果加载的缓冲时长到达这个值，结束加载状态。
             config.highBufferDuration = 3000;
             // 起播缓冲区时长。单位ms。这个时间设置越短，起播越快。也可能会导致播放之后很快就会进入加载状态。
             config.startBufferDuration = 500;
-            //
+
             config.mMAXBackwardDuration = 0;
+            config.enableSEI = false;
+            config.clearShowWhenStop = false;
 
             [self.player setConfig:config];
           

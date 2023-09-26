@@ -286,6 +286,10 @@
 
     [self.client setLogFilter:MetaPCDNLogFilterInfo];
     [self.client setLogFile:logPath fileSize:10 * 1024 * 1024];
+    
+    NSString * param = [NSString stringWithFormat:@"{\"enable_time_stretch\":false}"];
+    [self.client setParameters:param];
+    
     if( self.locoalUrl.length > 0) {
         // destory old local proxy url
         [self.client destoryLocalStream:self.locoalUrl];

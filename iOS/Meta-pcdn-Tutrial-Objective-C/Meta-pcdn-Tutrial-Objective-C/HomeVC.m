@@ -29,7 +29,8 @@
 - (NSArray *)dataSource {
     if(_dataSource == nil) {
         _dataSource = @[
-            @"rtmp://221.13.203.66:31937/live/IMG_30fps_bf1_1M_baseline_360p",
+            @"rtmp://221.13.203.66:31935/live/test_1080p_3m_baseline_25fps_150min",
+            @"rtmp://221.13.203.66:31935/live/test_360p_1m_baseline_25fps_150min"
         ];
     }
     return _dataSource;
